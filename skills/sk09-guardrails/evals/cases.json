@@ -1,0 +1,38 @@
+{
+  "skill": "SK09",
+  "cases": [
+    {
+      "id": "SK09-pressure",
+      "prompt": "Un agente de soporte de varios clientes consulta documentos y puede enviar correos. Su cuenta técnica tiene acceso global. La UI oculta datos ajenos. Hay poco tiempo: ¿eso basta y qué controles implementas?",
+      "assertions": [
+        "Autorización backend/herramientas",
+        "tenant y retrieval",
+        "egress",
+        "prompt injection",
+        "permisos explícitos para enviar",
+        "pruebas negativas."
+      ]
+    },
+    {
+      "id": "SK09-trigger",
+      "prompt": "Diseñar guardrails y permisos para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK09-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK09-boundary-0",
+      "prompt": "Revisa cómo impedir que documentos recuperados ordenen enviar secretos.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK09-boundary-1",
+      "prompt": "Explícame qué significa permiso en esta oración.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

@@ -1,0 +1,641 @@
+{
+  "review": "triggering-refined",
+  "method": {
+    "type": "full_catalog_textual_judge_selection",
+    "execution": "El juez textual produjo una selección primaria de skill o no_skill para cada uno de los 30 casos nuevos considerando simultáneamente las 15 descriptions 0.1.1. El script solo serializa esas decisiones y calcula sus coincidencias.",
+    "router_product_executed": false,
+    "blind": false,
+    "scope": "Frontmatters actuales y evaluación de casos boundary-0/boundary-1; sin cuerpos de skills, baseline ni otras revisiones. Los archivos cases.json se mostraron completos al extraer datos; los casos antiguos no se puntúan.",
+    "interpretation": "expected_activation:false significa no activar la skill objetivo; puede seleccionar otra skill del catálogo. No hay etiqueta gold independiente de la selección completa.",
+    "selection_policy": "Elegir responsabilidad principal; habilidades auxiliares no se añaden por solapamiento conceptual. no_skill se limita a este catálogo de 15 skills."
+  },
+  "catalog": [
+    {
+      "skill": "SK00",
+      "description": "Recuperar el estado de trabajo, decisiones previas y evidencia del proyecto al iniciar o retomar su diseño o construcción; no sustituye la instrumentación de producción. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "d3c2c9aa6b9be331b84e4d5934bd2d6205818c5ff5c732b63305f16e7a7fd872"
+    },
+    {
+      "skill": "SK01",
+      "description": "Definir usuarios, problema, tareas, alcance, métricas de éxito y valor esperado antes de elegir mecanismos del agente. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "474e653b653978e8f52d9a491ee363796bef8e2cb04aa0ee42beeef6b73fae08"
+    },
+    {
+      "skill": "SK02",
+      "description": "Elegir entre automatización determinista, una llamada a modelo, workflow o agente; decidir componentes necesarios antes de seleccionar proveedores. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "47aedd10d5d4e3a66c2a76378202c50cd4d9ce8bda8ffba8760f1b7dc4a636bf"
+    },
+    {
+      "skill": "SK03",
+      "description": "Diseñar o construir adquisición y actualización de fuentes para el agente: batch, API, eventos, CDC, OCR, cursores y deduplicación. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "382529fcb712e4e2472da014c8990e7c5f3064ca049ef5a59d23f44dd24389c3"
+    },
+    {
+      "skill": "SK04",
+      "description": "Diseñar representación de datos, estado de ejecución y memoria persistente, con procedencia, vigencia, aislamiento y retención. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "fda1d3d73ff50793a13135d00dc158e28f96abe0e845dcd9a9c6abbcca584d45"
+    },
+    {
+      "skill": "SK05",
+      "description": "Diseñar o comparar recuperación de conocimiento para las respuestas del agente: contexto directo, SQL/API, búsqueda léxica, vectorial o híbrida, filtros y grounding. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "9e9be79e58b9c22fe34ea2cdc66a7c41ce51394409010ed45b897cd38c72b0d3"
+    },
+    {
+      "skill": "SK06",
+      "description": "Diseñar o implementar contratos de herramientas y acciones del agente, incluidos entradas, efectos, errores, idempotencia y adaptadores; no equivale a ejecutar una acción cotidiana. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "e24786386378915f20f3a0696e848d91d1f8f4be109af6099301993c13833f75"
+    },
+    {
+      "skill": "SK07",
+      "description": "Seleccionar modelos y parámetros según capacidades, modalidad, residencia, coste y latencia, mediante medición en tareas representativas. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "095a8a35689470418240a58843fafba620d6b53c7751dee501972f75b926d6c2"
+    },
+    {
+      "skill": "SK08",
+      "description": "Diseñar o construir control de flujo, estado, límites de iteración y coordinación de herramientas o agentes; elegir entre llamada simple, workflow o bucle acotado. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "83a53a485a51d4591dd6deeba6d8591f833f4b54d6aeeb9ba1d27fcf081dcee6"
+    },
+    {
+      "skill": "SK09",
+      "description": "Diseñar o comprobar controles de seguridad del agente: autorización, aislamiento, prompt injection, salida de datos y validación de acciones. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "be86603ff7caf09ce602b950e4c1aefd6882a5ac5fa2c7d3d64e4ba8b99a887c"
+    },
+    {
+      "skill": "SK10",
+      "description": "Diseñar o implementar la interfaz de uso del agente por web, chat, API, CLI, eventos, voz o multimodal, incluidos estados, errores y experiencia. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "3931928915fc33c9f1c2c7c5269ad9defd683a5fffff72e08ce4508747dca462"
+    },
+    {
+      "skill": "SK11",
+      "description": "Diseñar o ejecutar evaluación del agente y sus variantes con tareas, riesgos, baseline, holdout, métricas de calidad, latencia y coste. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "fd22268ef56e20aacc318b8ee6787d73d2e76dbf7dc8a55c6e76f5b6c56a4785"
+    },
+    {
+      "skill": "SK12",
+      "description": "Instrumentar y diagnosticar el agente en ejecución con trazas, métricas, costes, correlación y alertas, minimizando datos sensibles. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "782e103cb948222f2950a0d9b19bca4d6b2e9b87c17a6c33a0655e38ce26aa70"
+    },
+    {
+      "skill": "SK13",
+      "description": "Preparar o ejecutar releases y recuperación del servicio del agente: configuración, pruebas del destino, migraciones, rollback y capacidades de despliegue. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "58882ce42cbb73fd04565ff025faa579f124eb631168399ba892a0440b128914"
+    },
+    {
+      "skill": "SK14",
+      "description": "Proponer y validar cambios versionados en skills o componentes a partir de fallos medidos, comparando baseline y regresiones antes de adoptarlos. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana.",
+      "version": "0.1.1",
+      "frontmatter_sha256": "7fea30a5e72fe0e1e546a848c958bf43af85d558b5abdfa8bc7e767402893124"
+    }
+  ],
+  "sk02_deterministic_automation_check": {
+    "passed": true,
+    "evidence": "Elegir entre automatización determinista, una llamada a modelo, workflow o agente; decidir componentes necesarios antes de seleccionar proveedores. Usar en diseño o revisión del sistema, no para atender una consulta cotidiana."
+  },
+  "summary": {
+    "skills": 15,
+    "cases": 30,
+    "positive_target_agreements": 15,
+    "negative_target_agreements": 15,
+    "target_agreements": 30,
+    "target_disagreements": 0,
+    "no_skill_selections": 6,
+    "cross_skill_negative_selections": 9,
+    "product_router_runs": 0
+  },
+  "cases": [
+    {
+      "case_id": "SK00-boundary-0",
+      "target_skill": "SK00",
+      "prompt": "Retoma el proyecto y separa decisiones vigentes de notas antiguas.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK00",
+        "selection": "SK00",
+        "selected_skills": [
+          "SK00"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Retomar estado y decisiones del proyecto coincide con SK00; no se pide memoria del agente."
+    },
+    {
+      "case_id": "SK00-boundary-1",
+      "target_skill": "SK00",
+      "prompt": "Busca ahora en nuestros documentos la política de vacaciones.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": null,
+        "selection": "no_skill",
+        "selected_skills": []
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Es consulta cotidiana documental, sin diseño de recuperación; ninguna skill de este catálogo."
+    },
+    {
+      "case_id": "SK01-boundary-0",
+      "target_skill": "SK01",
+      "prompt": "Define para quién sirve el asistente y cómo mediremos si ahorra trabajo.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK01",
+        "selection": "SK01",
+        "selected_skills": [
+          "SK01"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Usuarios destinatarios y ahorro esperado son definición del caso y valor."
+    },
+    {
+      "case_id": "SK01-boundary-1",
+      "target_skill": "SK01",
+      "prompt": "Elige entre búsqueda léxica y vectorial con el caso de uso ya fijado.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK05",
+        "selection": "SK05",
+        "selected_skills": [
+          "SK05"
+        ]
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Elegir recuperación léxica/vectorial con caso fijado corresponde a SK05, no definir caso y valor."
+    },
+    {
+      "case_id": "SK02-boundary-0",
+      "target_skill": "SK02",
+      "prompt": "Decide si esta validación de reglas necesita LLM o un job determinista.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK02",
+        "selection": "SK02",
+        "selected_skills": [
+          "SK02"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Contrasta LLM con automatización determinista: decisión arquitectónica explícita."
+    },
+    {
+      "case_id": "SK02-boundary-1",
+      "target_skill": "SK02",
+      "prompt": "Ajusta únicamente el límite de reintentos de la herramienta ya diseñada.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK06",
+        "selection": "SK06",
+        "selected_skills": [
+          "SK06"
+        ]
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Límite de reintentos de herramienta existente pertenece al contrato y manejo de errores SK06, no arquitectura global."
+    },
+    {
+      "case_id": "SK03-boundary-0",
+      "target_skill": "SK03",
+      "prompt": "Necesitamos importar PDFs semanales y eventos duplicados a un corpus.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK03",
+        "selection": "SK03",
+        "selected_skills": [
+          "SK03"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Importación periódica de documentos y deduplicación de eventos constituyen ingesta."
+    },
+    {
+      "case_id": "SK03-boundary-1",
+      "target_skill": "SK03",
+      "prompt": "Consulta ahora el estado del pedido con la herramienta existente.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": null,
+        "selection": "no_skill",
+        "selected_skills": []
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Consultar estado con herramienta existente es uso cotidiano, no construir ingesta ni herramienta."
+    },
+    {
+      "case_id": "SK04-boundary-0",
+      "target_skill": "SK04",
+      "prompt": "Decide qué recordar entre sesiones y cuándo borrar esa memoria.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK04",
+        "selection": "SK04",
+        "selected_skills": [
+          "SK04"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Persistencia entre sesiones y borrado son memoria y retención."
+    },
+    {
+      "case_id": "SK04-boundary-1",
+      "target_skill": "SK04",
+      "prompt": "Retoma las decisiones del proyecto leyendo su README y las últimas pruebas.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK00",
+        "selection": "SK00",
+        "selected_skills": [
+          "SK00"
+        ]
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Retomar README y pruebas del proyecto corresponde a SK00, no a memoria persistente del sistema."
+    },
+    {
+      "case_id": "SK05-boundary-0",
+      "target_skill": "SK05",
+      "prompt": "Diseña cómo buscar políticas y citar los fragmentos usados en cada respuesta.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK05",
+        "selection": "SK05",
+        "selected_skills": [
+          "SK05"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Diseñar búsqueda y citas corresponde a recuperación y grounding, no a ejecutar una búsqueda."
+    },
+    {
+      "case_id": "SK05-boundary-1",
+      "target_skill": "SK05",
+      "prompt": "Recupera las decisiones y pendientes del proyecto para retomarlo.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK00",
+        "selection": "SK00",
+        "selected_skills": [
+          "SK00"
+        ]
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Recuperar decisiones y pendientes del proyecto corresponde a SK00, no a búsqueda de conocimiento para respuestas."
+    },
+    {
+      "case_id": "SK06-boundary-0",
+      "target_skill": "SK06",
+      "prompt": "Define el contrato de una herramienta que reserva citas sin duplicarlas.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK06",
+        "selection": "SK06",
+        "selected_skills": [
+          "SK06"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Contrato e idempotencia de herramienta de reservas corresponden a SK06."
+    },
+    {
+      "case_id": "SK06-boundary-1",
+      "target_skill": "SK06",
+      "prompt": "Reserva una cita usando la herramienta ya disponible.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": null,
+        "selection": "no_skill",
+        "selected_skills": []
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Ejecutar una reserva existente es uso cotidiano, no diseño de contratos."
+    },
+    {
+      "case_id": "SK07-boundary-0",
+      "target_skill": "SK07",
+      "prompt": "Decide qué candidatos de modelo probar bajo restricciones de residencia y latencia.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK07",
+        "selection": "SK07",
+        "selected_skills": [
+          "SK07"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Seleccionar candidatos según residencia y latencia corresponde a SK07; evaluación puede apoyar pero no es el objetivo principal."
+    },
+    {
+      "case_id": "SK07-boundary-1",
+      "target_skill": "SK07",
+      "prompt": "Evalúa la calidad global del agente sin cambiar ni elegir modelo.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK11",
+        "selection": "SK11",
+        "selected_skills": [
+          "SK11"
+        ]
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Calidad global del agente corresponde a SK11, con selección de modelo expresamente excluida."
+    },
+    {
+      "case_id": "SK08-boundary-0",
+      "target_skill": "SK08",
+      "prompt": "Implementa un flujo que investiga, redacta y termina tras un máximo de pasos.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK08",
+        "selection": "SK08",
+        "selected_skills": [
+          "SK08"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Implementar secuencia y terminación por pasos corresponde a control de flujo SK08."
+    },
+    {
+      "case_id": "SK08-boundary-1",
+      "target_skill": "SK08",
+      "prompt": "Piensa paso a paso y responde esta pregunta cotidiana.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": null,
+        "selection": "no_skill",
+        "selected_skills": []
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Pedir una respuesta cotidiana razonada no constituye diseño de orquestación."
+    },
+    {
+      "case_id": "SK09-boundary-0",
+      "target_skill": "SK09",
+      "prompt": "Revisa cómo impedir que documentos recuperados ordenen enviar secretos.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK09",
+        "selection": "SK09",
+        "selected_skills": [
+          "SK09"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Impedir instrucciones maliciosas en documentos y salida de secretos corresponde a guardrails."
+    },
+    {
+      "case_id": "SK09-boundary-1",
+      "target_skill": "SK09",
+      "prompt": "Explícame qué significa permiso en esta oración.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": null,
+        "selection": "no_skill",
+        "selected_skills": []
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Es explicación lingüística cotidiana, no diseño de autorización."
+    },
+    {
+      "case_id": "SK10-boundary-0",
+      "target_skill": "SK10",
+      "prompt": "Diseña la interfaz para solicitudes asíncronas de un agente sin pantalla.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK10",
+        "selection": "SK10",
+        "selected_skills": [
+          "SK10"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Interfaz asíncrona sin pantalla entra en canal y experiencia mediante API o eventos."
+    },
+    {
+      "case_id": "SK10-boundary-1",
+      "target_skill": "SK10",
+      "prompt": "Despliega el backend ya validado sin modificar sus interfaces.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK13",
+        "selection": "SK13",
+        "selected_skills": [
+          "SK13"
+        ]
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Desplegar backend validado corresponde a SK13; se excluye cambiar interfaz."
+    },
+    {
+      "case_id": "SK11-boundary-0",
+      "target_skill": "SK11",
+      "prompt": "Prepara casos independientes para comprobar si nuestro agente está listo.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK11",
+        "selection": "SK11",
+        "selected_skills": [
+          "SK11"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Casos independientes y preparación del agente corresponden a evaluación SK11."
+    },
+    {
+      "case_id": "SK11-boundary-1",
+      "target_skill": "SK11",
+      "prompt": "Activa una alerta de latencia usando los umbrales ya acordados.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK12",
+        "selection": "SK12",
+        "selected_skills": [
+          "SK12"
+        ]
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Configurar alerta con umbral fijado es instrumentación SK12, no evaluación del agente."
+    },
+    {
+      "case_id": "SK12-boundary-0",
+      "target_skill": "SK12",
+      "prompt": "Añade trazas para localizar qué etapa vuelve lenta cada respuesta.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK12",
+        "selection": "SK12",
+        "selected_skills": [
+          "SK12"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Añadir trazas por etapa corresponde a instrumentación SK12."
+    },
+    {
+      "case_id": "SK12-boundary-1",
+      "target_skill": "SK12",
+      "prompt": "Publica una nueva versión y prepara su rollback.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK13",
+        "selection": "SK13",
+        "selected_skills": [
+          "SK13"
+        ]
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Publicación de versión y rollback corresponden a SK13, no instrumentación."
+    },
+    {
+      "case_id": "SK13-boundary-0",
+      "target_skill": "SK13",
+      "prompt": "Prepara un release con migración y un plan verificable de recuperación.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK13",
+        "selection": "SK13",
+        "selected_skills": [
+          "SK13"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Release, migración y recuperación del servicio corresponden a despliegue SK13."
+    },
+    {
+      "case_id": "SK13-boundary-1",
+      "target_skill": "SK13",
+      "prompt": "Recupera fragmentos de una política para fundamentar una respuesta.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": null,
+        "selection": "no_skill",
+        "selected_skills": []
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Recuperar fragmentos para una respuesta es consulta cotidiana; no pide diseñar recuperación ni recuperar un servicio."
+    },
+    {
+      "case_id": "SK14-boundary-0",
+      "target_skill": "SK14",
+      "prompt": "Una skill falla en nuevos casos: compara una revisión con el baseline antes de reemplazarla.",
+      "expected_target_activation": true,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK14",
+        "selection": "SK14",
+        "selected_skills": [
+          "SK14"
+        ]
+      },
+      "observed_target_activation": true,
+      "agreement_with_case": true,
+      "rationale": "Revisión de skill a partir de fallos, baseline y reemplazo controlado corresponde a mejora SK14."
+    },
+    {
+      "case_id": "SK14-boundary-1",
+      "target_skill": "SK14",
+      "prompt": "Construye por primera vez la ingesta del agente sin una versión previa que comparar.",
+      "expected_target_activation": false,
+      "observed_output": {
+        "source": "selección explícita del juez textual de esta revisión",
+        "primary_skill": "SK03",
+        "selection": "SK03",
+        "selected_skills": [
+          "SK03"
+        ]
+      },
+      "observed_target_activation": false,
+      "agreement_with_case": true,
+      "rationale": "Construcción inicial de ingesta corresponde a SK03, sin comparación de cambios requerida por SK14."
+    }
+  ],
+  "remaining_findings": [
+    {
+      "severity": "low",
+      "evidence": "SK02 incluye llamada a modelo/workflow/agente; SK08 incluye llamada simple/workflow/bucle acotado.",
+      "assessment": "La frontera arquitectura global frente a implementación de control de flujo es inferible, pero no totalmente exclusiva. No produjo desacuerdo en estos casos.",
+      "proposal": "Añadir un caso verdaderamente ambiguo de elección entre workflow y agente y fijar si el runtime admite coactivación o selección primaria."
+    },
+    {
+      "severity": "low",
+      "evidence": "Algunas descriptions, por ejemplo SK00 y SK04, omiten agente y terminan con diseño o revisión del sistema.",
+      "assessment": "Los positivos con contexto implícito pasan bajo el catálogo del proyecto; en un catálogo global podrían atraer proyectos de software ajenos a agentes.",
+      "proposal": "Probar negativos de otros dominios en un catálogo global antes de certificar autodetección."
+    }
+  ],
+  "limitations": [
+    "La revisión es una ejecución de juicio textual, no una prueba del router de Codex ni de otro producto.",
+    "El mismo revisor propuso previamente estos casos y descriptions; hay exposición previa y no constituyen holdout independiente.",
+    "Las expectativas estaban visibles; no hubo cegamiento, múltiples jueces ni repetición.",
+    "30/30 acuerdos describen este conjunto y este juez; no estiman precisión, recall poblacional ni mejora estadística frente a 0.1.0.",
+    "La evaluación usa 15 skills y una selección principal; un runtime con más skills, otros contextos o selección múltiple puede comportarse distinto.",
+    "No se ejecutaron cuerpos de skills ni se evaluó calidad de las respuestas al aplicar cada skill."
+  ]
+}

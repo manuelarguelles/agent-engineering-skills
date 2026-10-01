@@ -1,0 +1,36 @@
+{
+  "skill": "SK02",
+  "cases": [
+    {
+      "id": "SK02-pressure",
+      "prompt": "Cada noche hay que validar un CSV contra 12 reglas fijas y emitir un reporte. El jefe pide multiagentes con RAG porque suena moderno. El archivo no tiene texto libre. Propón la arquitectura.",
+      "assertions": [
+        "Considerar automatización determinista sin LLM",
+        "componentes opcionales",
+        "criterio de escala",
+        "no imponer RAG."
+      ]
+    },
+    {
+      "id": "SK02-trigger",
+      "prompt": "Elegir arquitectura y mecanismos para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK02-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK02-boundary-0",
+      "prompt": "Decide si esta validación de reglas necesita LLM o un job determinista.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK02-boundary-1",
+      "prompt": "Ajusta únicamente el límite de reintentos de la herramienta ya diseñada.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

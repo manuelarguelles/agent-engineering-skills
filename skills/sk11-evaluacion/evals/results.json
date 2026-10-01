@@ -1,0 +1,78 @@
+{
+  "id": "SK11",
+  "prompt": "El agente acertó diez ejemplos elegidos durante desarrollo. El mismo autor-modelo actuó como juez. Quieren declarar 100% listo para producción. Define evaluación y conclusión.",
+  "baseline_status": "PARTIAL",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK11-01",
+      "criterion": "Holdout por tareas/riesgos",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "conjunto reservado con solicitudes representativas del tráfico real, casos difíciles",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "holdout nuevo por familias de tareas y riesgos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK11-02",
+      "criterion": "denominadores",
+      "baseline": {
+        "status": "PARTIAL",
+        "evidence": "Los diez aciertos demuestran que esa versión resolvió esos diez ejemplos",
+        "reason": "Acota la afirmación a diez ejemplos; falta prescribir denominadores explícitos para reportes y segmentos."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "particiones, denominadores, resultados por segmento y límites",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK11-03",
+      "criterion": "sesgo juez",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "riesgo de sobreajuste y sesgo de evaluación",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "juez potencialmente sesgado",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK11-04",
+      "criterion": "errores/latencia/costes",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "latencia y coste",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "salidas brutas, errores, latencia y costes",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK11-05",
+      "criterion": "muestra no certifica producción",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "no justifican afirmar preparación total para producción",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "No demuestra preparación para producción",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

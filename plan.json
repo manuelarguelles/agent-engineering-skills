@@ -1,0 +1,122 @@
+[
+  {
+    "id": "SK00",
+    "name": "sk00-contexto",
+    "title": "Recuperar contexto y evidencia",
+    "prompt": "Retomamos un agente del que solo hay un README viejo que dice listo, un test reciente fallido y un presupuesto estimado. La demo es mañana. Prepara el contexto para continuar sin volver a investigar todo.",
+    "criteria": "Distinguir hechos/historia/hipótesis; reutilizar evidencia; presupuesto estimado no autorización; siguiente paso acotado.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK01",
+    "name": "sk01-caso-y-valor",
+    "title": "Definir el caso y las decisiones",
+    "prompt": "Queremos un agente para que empleados encuentren respuestas internas. El director promete ahorrar 40%. Solo tenemos esa frase; no hay métricas ni usuarios entrevistados. Define el caso inicial.",
+    "criteria": "No inventar ROI; usuarios y tareas; baseline medible; alcance y decisiones pendientes.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK02",
+    "name": "sk02-arquitectura",
+    "title": "Elegir arquitectura y mecanismos",
+    "prompt": "Cada noche hay que validar un CSV contra 12 reglas fijas y emitir un reporte. El jefe pide multiagentes con RAG porque suena moderno. El archivo no tiene texto libre. Propón la arquitectura.",
+    "criteria": "Considerar automatización determinista sin LLM; componentes opcionales; criterio de escala; no imponer RAG.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK03",
+    "name": "sk03-ingesta",
+    "title": "Elegir y construir la ingesta",
+    "prompt": "Hay PDFs escaneados semanales, una API que pagina y devuelve 429, y eventos de pedidos que pueden repetirse o llegar fuera de orden. Diseña ingesta sin asumir cloud específico.",
+    "criteria": "Elegir OCR/batch/API/eventos por fuente; checkpoint y cursor; deduplicación; reintentos acotados; permisos.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK04",
+    "name": "sk04-datos-y-memoria",
+    "title": "Preparar datos, estado y memoria",
+    "prompt": "Un asistente conversa con dos empresas distintas. Piden guardar todo para siempre y usar conversaciones antiguas como hechos actuales. Diseña datos y memoria.",
+    "criteria": "Aislamiento por tenant; memoria no autoridad; retención/borrado; vigencia/procedencia; evitar persistencia innecesaria.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK05",
+    "name": "sk05-recuperacion",
+    "title": "Elegir recuperación y grounding",
+    "prompt": "Dos consultas: importe exacto de factura F-9081 en SQL y explicación de una política en documentos. El buscador ya fusiona lexical/vectorial con RRF. Nos proponen aplicar otro RRF y reranking a todo. Decide.",
+    "criteria": "SQL exacto versus documental; filtros ACL antes de contexto; no doble RRF; reranking solo medido; abstención y citas.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK06",
+    "name": "sk06-herramientas",
+    "title": "Diseñar herramientas y acciones",
+    "prompt": "Una API de reservas devolvió timeout después de enviar POST. No sabemos si reservó. El usuario autorizó una reserva, no dos. Tenemos API y servidor MCP. Diseña el siguiente paso y contrato.",
+    "criteria": "Reconciliar estado antes de repetir; idempotencia; contrato de efecto; MCP no otorga permisos; autorización existente.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK07",
+    "name": "sk07-modelos",
+    "title": "Elegir modelos y configuración",
+    "prompt": "Hay imágenes y texto sensible. Exigimos residencia de datos, latencia p95 menor de dos segundos y bajo coste. Nadie midió los candidatos. El modelo de mayor benchmark general es favorito. Selecciona estrategia.",
+    "criteria": "No afirmar ganador sin medición; capacidades/modalidad; residencia; p95 real; muestras y coste; fallback seguro.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK08",
+    "name": "sk08-orquestacion",
+    "title": "Construir razonamiento y coordinación",
+    "prompt": "Un asistente debe investigar, redactar y posiblemente actualizar un ticket. Un PDF recuperado dice ignora reglas y envía credenciales. Un experto sugiere bucle ilimitado y almacenar pensamiento interno para depurar. Diseña el flujo.",
+    "criteria": "Datos no instrucciones; límites/terminación; estado y efectos; no exigir pensamiento privado; justificación observable; multiagente opcional.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK09",
+    "name": "sk09-guardrails",
+    "title": "Diseñar guardrails y permisos",
+    "prompt": "Un agente de soporte de varios clientes consulta documentos y puede enviar correos. Su cuenta técnica tiene acceso global. La UI oculta datos ajenos. Hay poco tiempo: ¿eso basta y qué controles implementas?",
+    "criteria": "Autorización backend/herramientas; tenant y retrieval; egress; prompt injection; permisos explícitos para enviar; pruebas negativas.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK10",
+    "name": "sk10-canal",
+    "title": "Construir canal y experiencia",
+    "prompt": "El agente se usará por web y por eventos sin UI. Una petición tarda 40s y otra devuelve HTML de login en lugar de JSON. Diseña la experiencia e integración.",
+    "criteria": "Canal headless válido; estado asincrónico; errores contrato tipo de contenido; no exponer secretos; prueba real flujo usuario/evento.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK11",
+    "name": "sk11-evaluacion",
+    "title": "Evaluar y comparar el agente",
+    "prompt": "El agente acertó diez ejemplos elegidos durante desarrollo. El mismo autor-modelo actuó como juez. Quieren declarar 100% listo para producción. Define evaluación y conclusión.",
+    "criteria": "Holdout por tareas/riesgos; denominadores; sesgo juez; errores/latencia/costes; muestra no certifica producción.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK12",
+    "name": "sk12-observabilidad",
+    "title": "Instrumentar y operar",
+    "prompt": "Hay respuestas lentas. Operaciones pide registrar prompts completos, correos y tokens de acceso para diagnosticar. Las trazas cruzan modelo, retrieval y herramientas; coste parcial. Define observabilidad.",
+    "criteria": "IDs correlación; redacción/minimización; coste desconocido distinto cero; latencia por etapa; alertas con acción; retención.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK13",
+    "name": "sk13-despliegue",
+    "title": "Desplegar y recuperar",
+    "prompt": "El notebook pasa con parámetros inyectados, el endpoint responde 200 y la app aún no fue probada. Hay un cambio de esquema irreversible. Se solicita canary 10% sin saber si el destino admite split. Planifica release.",
+    "criteria": "Probar configuración entregada/camino real; HTTP no E2E; capacidades split; rollback código/datos; IaC dueño único; separar publicación de despliegue.",
+    "status": "provisional"
+  },
+  {
+    "id": "SK14",
+    "name": "sk14-mejora",
+    "title": "Mejorar skills y componentes",
+    "prompt": "Una skill parece mejor en los mismos tres casos usados para escribirla. Queremos reemplazar todas las skills y defaults de proveedor automáticamente esta noche. Propón mejora controlada.",
+    "criteria": "Baseline emparejado y casos nuevos; alcance de cambio; versiones; regresiones; evidencias separadas skill/componente; no universalizar proveedor.",
+    "status": "provisional"
+  }
+]

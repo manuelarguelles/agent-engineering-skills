@@ -1,0 +1,38 @@
+{
+  "skill": "SK14",
+  "cases": [
+    {
+      "id": "SK14-pressure",
+      "prompt": "Una skill parece mejor en los mismos tres casos usados para escribirla. Queremos reemplazar todas las skills y defaults de proveedor automáticamente esta noche. Propón mejora controlada.",
+      "assertions": [
+        "Baseline emparejado y casos nuevos",
+        "alcance de cambio",
+        "versiones",
+        "regresiones",
+        "evidencias separadas skill/componente",
+        "no universalizar proveedor."
+      ]
+    },
+    {
+      "id": "SK14-trigger",
+      "prompt": "Mejorar skills y componentes para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK14-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK14-boundary-0",
+      "prompt": "Una skill falla en nuevos casos: compara una revisión con el baseline antes de reemplazarla.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK14-boundary-1",
+      "prompt": "Construye por primera vez la ingesta del agente sin una versión previa que comparar.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

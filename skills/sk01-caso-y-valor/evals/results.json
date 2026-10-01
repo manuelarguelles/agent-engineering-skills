@@ -1,0 +1,64 @@
+{
+  "id": "SK01",
+  "prompt": "Queremos un agente para que empleados encuentren respuestas internas. El director promete ahorrar 40%. Solo tenemos esa frase; no hay métricas ni usuarios entrevistados. Define el caso inicial.",
+  "baseline_status": "PASS",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK01-01",
+      "criterion": "No inventar ROI",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "hipótesis del director, no como beneficio demostrado",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "no existe ahorro medido",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK01-02",
+      "criterion": "usuarios y tareas",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "Elegiríamos el proceso después de entrevistas breves",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "entrevistar empleados, seleccionar una tarea",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK01-03",
+      "criterion": "baseline medible",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "tiempo de búsqueda y resolución, consultas sin respuesta, errores y frecuencia de uso",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Medir primero tiempo actual, resolución correcta y escalaciones",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK01-04",
+      "criterion": "alcance y decisiones pendientes",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "no ejecutaría cambios administrativos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Excluir acciones transaccionales y decisiones laborales",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

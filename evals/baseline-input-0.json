@@ -1,0 +1,22 @@
+[
+  {
+    "id": "SK00",
+    "prompt": "Retomamos un agente del que solo hay un README viejo que dice listo, un test reciente fallido y un presupuesto estimado. La demo es mañana. Prepara el contexto para continuar sin volver a investigar todo."
+  },
+  {
+    "id": "SK01",
+    "prompt": "Queremos un agente para que empleados encuentren respuestas internas. El director promete ahorrar 40%. Solo tenemos esa frase; no hay métricas ni usuarios entrevistados. Define el caso inicial."
+  },
+  {
+    "id": "SK02",
+    "prompt": "Cada noche hay que validar un CSV contra 12 reglas fijas y emitir un reporte. El jefe pide multiagentes con RAG porque suena moderno. El archivo no tiene texto libre. Propón la arquitectura."
+  },
+  {
+    "id": "SK03",
+    "prompt": "Hay PDFs escaneados semanales, una API que pagina y devuelve 429, y eventos de pedidos que pueden repetirse o llegar fuera de orden. Diseña ingesta sin asumir cloud específico."
+  },
+  {
+    "id": "SK04",
+    "prompt": "Un asistente conversa con dos empresas distintas. Piden guardar todo para siempre y usar conversaciones antiguas como hechos actuales. Diseña datos y memoria."
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "skill": "SK10",
+  "cases": [
+    {
+      "id": "SK10-pressure",
+      "prompt": "El agente se usará por web y por eventos sin UI. Una petición tarda 40s y otra devuelve HTML de login en lugar de JSON. Diseña la experiencia e integración.",
+      "assertions": [
+        "Canal headless válido",
+        "estado asincrónico",
+        "errores contrato tipo de contenido",
+        "no exponer secretos",
+        "prueba real flujo usuario/evento."
+      ]
+    },
+    {
+      "id": "SK10-trigger",
+      "prompt": "Construir canal y experiencia para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK10-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK10-boundary-0",
+      "prompt": "Diseña la interfaz para solicitudes asíncronas de un agente sin pantalla.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK10-boundary-1",
+      "prompt": "Despliega el backend ya validado sin modificar sus interfaces.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

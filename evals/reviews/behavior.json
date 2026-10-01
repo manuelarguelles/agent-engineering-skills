@@ -1,0 +1,1248 @@
+{
+  "reviewer": "independent_behavior_judge",
+  "scope": "Solo plan.json y las seis salidas group-*.json; no se leyó SKILL.md ni otras revisiones.",
+  "rubric": {
+    "PASS": "Cobertura suficiente y coherente, incluso mediante una alternativa válida implícita.",
+    "PARTIAL": "Cobertura relacionada pero incompleta para un criterio específico.",
+    "FAIL": "Criterio ausente o contradicho; aquí las marcas FAIL indican ausencia, no ejecución dañina.",
+    "case_aggregation": "PASS si todos los criterios pasan; FAIL si todos fallan; PARTIAL en otro caso."
+  },
+  "cases": [
+    {
+      "id": "SK00",
+      "prompt": "Retomamos un agente del que solo hay un README viejo que dice listo, un test reciente fallido y un presupuesto estimado. La demo es mañana. Prepara el contexto para continuar sin volver a investigar todo.",
+      "baseline_status": "PARTIAL",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK00-01",
+          "criterion": "Distinguir hechos/historia/hipótesis",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "Separaría hechos observados, declaraciones antiguas y estimaciones.",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "«listo» es una declaración histórica",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK00-02",
+          "criterion": "reutilizar evidencia",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "vinculada a los tres artefactos disponibles",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "reutilizar la evidencia disponible",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK00-03",
+          "criterion": "presupuesto estimado no autorización",
+          "baseline": {
+            "status": "PARTIAL",
+            "evidence": "Faltan responsable de aceptación, límite de gasto y criterio de éxito.",
+            "reason": "Reconoce estimaciones y falta de límite de gasto, pero no establece expresamente que la estimación no autoriza gastar."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "el presupuesto es estimación, no gasto autorizado.",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK00-04",
+          "criterion": "siguiente paso acotado",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "reproducir ese fallo",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "ejecutar únicamente el test afectado",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK01",
+      "prompt": "Queremos un agente para que empleados encuentren respuestas internas. El director promete ahorrar 40%. Solo tenemos esa frase; no hay métricas ni usuarios entrevistados. Define el caso inicial.",
+      "baseline_status": "PASS",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK01-01",
+          "criterion": "No inventar ROI",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "hipótesis del director, no como beneficio demostrado",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "no existe ahorro medido",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK01-02",
+          "criterion": "usuarios y tareas",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "Elegiríamos el proceso después de entrevistas breves",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "entrevistar empleados, seleccionar una tarea",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK01-03",
+          "criterion": "baseline medible",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "tiempo de búsqueda y resolución, consultas sin respuesta, errores y frecuencia de uso",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Medir primero tiempo actual, resolución correcta y escalaciones",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK01-04",
+          "criterion": "alcance y decisiones pendientes",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "no ejecutaría cambios administrativos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Excluir acciones transaccionales y decisiones laborales",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK02",
+      "prompt": "Cada noche hay que validar un CSV contra 12 reglas fijas y emitir un reporte. El jefe pide multiagentes con RAG porque suena moderno. El archivo no tiene texto libre. Propón la arquitectura.",
+      "baseline_status": "PASS",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK02-01",
+          "criterion": "Considerar automatización determinista sin LLM",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "proceso batch determinista",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "batch determinista nocturno, sin LLM",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK02-02",
+          "criterion": "componentes opcionales",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "No hay una necesidad funcional de RAG ni de multiagentes",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Recuperación, modelo y memoria conversacional: no_aplica",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK02-03",
+          "criterion": "criterio de escala",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "escalando solo según volumen y tiempos medidos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "si volumen o duración exceden la ventana nocturna",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK02-04",
+          "criterion": "no imponer RAG",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "no existen documentos que recuperar",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "sin LLM, RAG ni multiagentes",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK03",
+      "prompt": "Hay PDFs escaneados semanales, una API que pagina y devuelve 429, y eventos de pedidos que pueden repetirse o llegar fuera de orden. Diseña ingesta sin asumir cloud específico.",
+      "baseline_status": "PARTIAL",
+      "with_skill_status": "PARTIAL",
+      "assertions": [
+        {
+          "id": "SK03-01",
+          "criterion": "Elegir OCR/batch/API/eventos por fuente",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "Para PDFs conservaría archivo y hash, ejecutaría OCR",
+            "reason": "Distingue OCR, API y eventos; el procesamiento semanal batch queda implícito en los adaptadores y registro durable."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "PDF: batch semanal y OCR",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK03-02",
+          "criterion": "checkpoint y cursor",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "persistiría el cursor después de guardar cada página",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "confirmar checkpoint después de persistir cada página",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK03-03",
+          "criterion": "deduplicación",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "identificador de evento y consumidor idempotente",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "deduplicación por identificador y escritura idempotente",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK03-04",
+          "criterion": "reintentos acotados",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "presupuesto de reintentos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "límite de intentos y alerta",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK03-05",
+          "criterion": "permisos",
+          "baseline": {
+            "status": "FAIL",
+            "evidence": null,
+            "reason": "No aborda permisos de las fuentes en la respuesta."
+          },
+          "with_skill": {
+            "status": "PARTIAL",
+            "evidence": "Permisos, volumen, SLA y semántica de orden quedan pendientes del propietario de cada fuente.",
+            "reason": "Identifica permisos como pendiente con dueño, pero no define comprobación o control de acceso de la ingesta."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK04",
+      "prompt": "Un asistente conversa con dos empresas distintas. Piden guardar todo para siempre y usar conversaciones antiguas como hechos actuales. Diseña datos y memoria.",
+      "baseline_status": "PASS",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK04-01",
+          "criterion": "Aislamiento por tenant",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "Separaría los datos por empresa desde autenticación",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Derivar tenant de la identidad autenticada",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK04-02",
+          "criterion": "memoria no autoridad",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "evidencia de lo dicho en una fecha, no un hecho vigente",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Una memoria es hipótesis contextual",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK04-03",
+          "criterion": "retención/borrado",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "plazos con los responsables de ambas empresas, contemplando exportación, eliminación",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "revisión, corrección, exportación y borrado",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK04-04",
+          "criterion": "vigencia/procedencia",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "procedencia, autor, fecha, ámbito y vencimiento",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "procedencia, versión, fecha de captura, vigencia y expiración",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK04-05",
+          "criterion": "evitar persistencia innecesaria",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "reduciríamos datos personales innecesarios",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "estado efímero por defecto",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK05",
+      "prompt": "Dos consultas: importe exacto de factura F-9081 en SQL y explicación de una política en documentos. El buscador ya fusiona lexical/vectorial con RRF. Nos proponen aplicar otro RRF y reranking a todo. Decide.",
+      "baseline_status": "PARTIAL",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK05-01",
+          "criterion": "SQL exacto versus documental",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "consultaría SQL con parámetros",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "el importe de F-9081 se obtiene mediante SQL parametrizado",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK05-02",
+          "criterion": "filtros ACL antes de contexto",
+          "baseline": {
+            "status": "PARTIAL",
+            "evidence": "permisos del solicitante y alcance de empresa",
+            "reason": "Aplica permisos a SQL; no explicita ACL para recuperación documental antes de formar el contexto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Aplicaría ACL y vigencia antes del contexto, también en cachés.",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK05-03",
+          "criterion": "no doble RRF",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "No añadiría otro RRF a la misma lista",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Rechazo un segundo RRF",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK05-04",
+          "criterion": "reranking solo medido",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "Se habilitaría si mejora resultados dentro del presupuesto",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Lo incorporaría si la mejora justifica el coste adicional",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK05-05",
+          "criterion": "abstención y citas",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "recuperaría fragmentos con referencias",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Citaría pasajes que resuelvan a la fuente correcta",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK06",
+      "prompt": "Una API de reservas devolvió timeout después de enviar POST. No sabemos si reservó. El usuario autorizó una reserva, no dos. Tenemos API y servidor MCP. Diseña el siguiente paso y contrato.",
+      "baseline_status": "PARTIAL",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK06-01",
+          "criterion": "Reconciliar estado antes de repetir",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "No repetiría inmediatamente el POST",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "El siguiente paso es una lectura de reconciliación",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK06-02",
+          "criterion": "idempotencia",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "clave de idempotencia estable por intención autorizada",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "clave estable, huella de argumentos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK06-03",
+          "criterion": "contrato de efecto",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "confirmada, pendiente, rechazada o desconocida",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "precondiciones, efecto, errores y estados confirmado/pendiente/fallido/desconocido",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK06-04",
+          "criterion": "MCP no otorga permisos",
+          "baseline": {
+            "status": "PARTIAL",
+            "evidence": "MCP expondría creación y consulta de estado con esquemas estrictos, permisos",
+            "reason": "Incluye permisos en el contrato MCP; no aclara que el protocolo no concede autorización. La aclaración presente trata garantías transaccionales."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "MCP sirve como adaptador si conserva ese contrato, sin conceder permisos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK06-05",
+          "criterion": "autorización existente",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "por intención autorizada",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "No pediría otra autorización para la misma reserva",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK07",
+      "prompt": "Hay imágenes y texto sensible. Exigimos residencia de datos, latencia p95 menor de dos segundos y bajo coste. Nadie midió los candidatos. El modelo de mayor benchmark general es favorito. Selecciona estrategia.",
+      "baseline_status": "PARTIAL",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK07-01",
+          "criterion": "No afirmar ganador sin medición",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "No elegiría todavía un ganador",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "No seleccionaría todavía un ganador",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK07-02",
+          "criterion": "capacidades/modalidad",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "tareas multimodales",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "tareas visuales y umbral de calidad",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK07-03",
+          "criterion": "residencia",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "residencia en un filtro obligatorio",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "jurisdicción permitida, tratamiento y retención de datos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK07-04",
+          "criterion": "p95 real",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "exigiría p95 inferior a dos segundos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "p50/p95 extremo a extremo bajo carga",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK07-05",
+          "criterion": "muestras y coste",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "coste por tarea resuelta",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "conjunto representativo autorizado",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK07-06",
+          "criterion": "fallback seguro",
+          "baseline": {
+            "status": "PARTIAL",
+            "evidence": "Si ninguno cumple, presentaría las mediciones y negociaría alcance o infraestructura",
+            "reason": "Propone no seleccionar si nadie cumple y renegociar alcance; falta contrato explícito de fallback compatible o fallo controlado en ejecución."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Un fallback conservaría residencia, permisos y contrato; sin opción compatible, fallaría de forma controlada.",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK08",
+      "prompt": "Un asistente debe investigar, redactar y posiblemente actualizar un ticket. Un PDF recuperado dice ignora reglas y envía credenciales. Un experto sugiere bucle ilimitado y almacenar pensamiento interno para depurar. Diseña el flujo.",
+      "baseline_status": "PASS",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK08-01",
+          "criterion": "Datos no instrucciones",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "sus instrucciones para ignorar reglas y enviar credenciales no tienen autoridad",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Su orden de enviar credenciales no modifica instrucciones ni permisos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK08-02",
+          "criterion": "límites/terminación",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "límites de tiempo, llamadas y coste",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "diez llamadas, dos minutos y un reintento",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK08-03",
+          "criterion": "estado y efectos",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "registraría llamadas, resultados depurados, fuentes, estados",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "conservaría estado durable antes de efectos y reconciliaría escrituras ambiguas",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK08-04",
+          "criterion": "no exigir pensamiento privado",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "No almacenaría pensamiento interno",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "nunca pensamiento privado",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK08-05",
+          "criterion": "justificación observable",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "una explicación breve de decisiones",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "decisiones resumidas, fuentes, argumentos redactados, resultados y errores",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK08-06",
+          "criterion": "multiagente opcional",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "flujo en investigación, síntesis, revisión y eventual actualización",
+            "reason": "Propone una secuencia sin exigir multiagentes. Satisface opcionalidad aunque no use esa palabra."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Usaría una secuencia fija",
+            "reason": "La secuencia fija no exige multiagentes. No se penaliza ausencia de una mención literal."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK09",
+      "prompt": "Un agente de soporte de varios clientes consulta documentos y puede enviar correos. Su cuenta técnica tiene acceso global. La UI oculta datos ajenos. Hay poco tiempo: ¿eso basta y qué controles implementas?",
+      "baseline_status": "PASS",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK09-01",
+          "criterion": "Autorización backend/herramientas",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "aislamiento y autorización en el servidor",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "backend, herramientas y datos, denegando por defecto",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK09-02",
+          "criterion": "tenant y retrieval",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "restricciones por cliente a consultas, documentos, índices vectoriales, adjuntos y cachés",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Retrieval y cachés deben filtrar permisos antes de entregar contenido",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK09-03",
+          "criterion": "egress",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "destinatarios autorizados, contenido dentro del ámbito permitido",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "validación de esquema y destinos permitidos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK09-04",
+          "criterion": "prompt injection",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "instrucciones encontradas en documentos como datos no confiables",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Documentos recuperados no pueden autorizar acciones",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK09-05",
+          "criterion": "permisos explícitos para enviar",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "una acción de envío explícitamente autorizada",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "El envío requeriría autorización explícita",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK09-06",
+          "criterion": "pruebas negativas",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "pruebas negativas entre clientes",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "pruebas negativas: cruces de tenant, referencias indirectas, inyección y destinatarios manipulados",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK10",
+      "prompt": "El agente se usará por web y por eventos sin UI. Una petición tarda 40s y otra devuelve HTML de login en lugar de JSON. Diseña la experiencia e integración.",
+      "baseline_status": "PARTIAL",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK10-01",
+          "criterion": "Canal headless válido",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "Web y eventos invocarían el mismo servicio",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "API/eventos headless para automatización",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK10-02",
+          "criterion": "estado asincrónico",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "ejecución asíncrona: aceptación con identificador",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "HTTP 202, identificador de trabajo y consulta de estado",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK10-03",
+          "criterion": "errores contrato tipo de contenido",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "verificaría tipo de contenido y esquema",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "comprobaría status y Content-Type",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK10-04",
+          "criterion": "no exponer secretos",
+          "baseline": {
+            "status": "PARTIAL",
+            "evidence": "credenciales de servicio y renovación gestionada",
+            "reason": "Gestiona credenciales pero no define evitar su exposición al cliente, errores o registros."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Las credenciales permanecerían en servidor",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK10-05",
+          "criterion": "prueba real flujo usuario/evento",
+          "baseline": {
+            "status": "PARTIAL",
+            "evidence": "Probaría expiración de credenciales, duplicados, interrupciones y recuperación",
+            "reason": "Propone probar fallos de ambos canales; falta recorrido completo con usuario/consumidor real y resultado final."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Probaría envío, espera, resultado, sesión expirada, fallos y consumidor real",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK11",
+      "prompt": "El agente acertó diez ejemplos elegidos durante desarrollo. El mismo autor-modelo actuó como juez. Quieren declarar 100% listo para producción. Define evaluación y conclusión.",
+      "baseline_status": "PARTIAL",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK11-01",
+          "criterion": "Holdout por tareas/riesgos",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "conjunto reservado con solicitudes representativas del tráfico real, casos difíciles",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "holdout nuevo por familias de tareas y riesgos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK11-02",
+          "criterion": "denominadores",
+          "baseline": {
+            "status": "PARTIAL",
+            "evidence": "Los diez aciertos demuestran que esa versión resolvió esos diez ejemplos",
+            "reason": "Acota la afirmación a diez ejemplos; falta prescribir denominadores explícitos para reportes y segmentos."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "particiones, denominadores, resultados por segmento y límites",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK11-03",
+          "criterion": "sesgo juez",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "riesgo de sobreajuste y sesgo de evaluación",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "juez potencialmente sesgado",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK11-04",
+          "criterion": "errores/latencia/costes",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "latencia y coste",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "salidas brutas, errores, latencia y costes",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK11-05",
+          "criterion": "muestra no certifica producción",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "no justifican afirmar preparación total para producción",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "No demuestra preparación para producción",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK12",
+      "prompt": "Hay respuestas lentas. Operaciones pide registrar prompts completos, correos y tokens de acceso para diagnosticar. Las trazas cruzan modelo, retrieval y herramientas; coste parcial. Define observabilidad.",
+      "baseline_status": "PARTIAL",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK12-01",
+          "criterion": "IDs correlación",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "identificador de correlación y spans",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "trazas distribuidas correlacionadas por solicitud",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK12-02",
+          "criterion": "redacción/minimización",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "redacción antes de exportar",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "minimización y redacción antes de exportar",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK12-03",
+          "criterion": "coste desconocido distinto cero",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "datos confirmados, estimaciones y componentes desconocidos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "partidas desconocidas como null, nunca como cero",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK12-04",
+          "criterion": "latencia por etapa",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "espera en cola, retrieval, modelo y herramientas",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Mediría duración por etapa",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK12-05",
+          "criterion": "alertas con acción",
+          "baseline": {
+            "status": "PARTIAL",
+            "evidence": "Alertaría sobre degradación, errores y costes anómalos",
+            "reason": "Define señales de alerta, pero no una acción o responsable ante ellas."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "responsable de guardia identifica el span dominante y reduce concurrencia o escala la dependencia",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK12-06",
+          "criterion": "retención",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "retención breve",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "retención inicial de siete días",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK13",
+      "prompt": "El notebook pasa con parámetros inyectados, el endpoint responde 200 y la app aún no fue probada. Hay un cambio de esquema irreversible. Se solicita canary 10% sin saber si el destino admite split. Planifica release.",
+      "baseline_status": "PARTIAL",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK13-01",
+          "criterion": "Probar configuración entregada/camino real",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "comprobaría configuración, permisos, autenticación, secretos y parámetros",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "instalación limpia con los parámetros documentados",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK13-02",
+          "criterion": "HTTP no E2E",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "un 200 no demuestra un resultado válido",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "HTTP 200 no prueban instalación reproducible ni aceptación de la app",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK13-03",
+          "criterion": "capacidades split",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "Confirmaría si el destino admite reparto de tráfico",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "inspeccionar soporte de split",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK13-04",
+          "criterion": "rollback código/datos",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "volver al código anterior no recupera los datos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "rollback de código/configuración de recuperación de datos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK13-05",
+          "criterion": "IaC dueño único",
+          "baseline": {
+            "status": "FAIL",
+            "evidence": null,
+            "reason": "No menciona IaC ni propiedad única de recursos."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Cada recurso tendría un propietario IaC único",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK13-06",
+          "criterion": "separar publicación de despliegue",
+          "baseline": {
+            "status": "FAIL",
+            "evidence": "Separaría la migración irreversible del despliegue",
+            "reason": "Separa migración y despliegue, pero no publicación de artefacto y despliegue; usa publicación al final sin distinguir estados."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Distinguiría publicación del paquete, despliegue solicitado, estado READY, respuesta funcional y aceptación",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "SK14",
+      "prompt": "Una skill parece mejor en los mismos tres casos usados para escribirla. Queremos reemplazar todas las skills y defaults de proveedor automáticamente esta noche. Propón mejora controlada.",
+      "baseline_status": "PASS",
+      "with_skill_status": "PASS",
+      "assertions": [
+        {
+          "id": "SK14-01",
+          "criterion": "Baseline emparejado y casos nuevos",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "Compararía baseline y candidata bajo las mismas condiciones",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "usando idénticas entradas y configuración. Añadiría holdout nuevo",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK14-02",
+          "criterion": "alcance de cambio",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "limitaría su alcance a la tarea que pretende mejorar",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "no sustituiría skills ajenas al fallo",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK14-03",
+          "criterion": "versiones",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "Versionaría la candidata",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Versionaría skill y componente por separado",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK14-04",
+          "criterion": "regresiones",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "más regresiones de las skills existentes",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "regresiones, latencia y coste",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK14-05",
+          "criterion": "evidencias separadas skill/componente",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "Separaría el cambio de skill del cambio de proveedor o defaults para poder atribuir efectos",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "distinguiendo sus evidencias",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        },
+        {
+          "id": "SK14-06",
+          "criterion": "no universalizar proveedor",
+          "baseline": {
+            "status": "PASS",
+            "evidence": "no la promoción indiscriminada",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          },
+          "with_skill": {
+            "status": "PASS",
+            "evidence": "Los defaults de proveedor requerirían una comparación independiente",
+            "reason": "Cubre el criterio en el diseño propuesto."
+          }
+        }
+      ]
+    }
+  ],
+  "assertion_counts": {
+    "baseline": {
+      "PASS": 67,
+      "PARTIAL": 8,
+      "FAIL": 3
+    },
+    "with_skill": {
+      "PASS": 77,
+      "PARTIAL": 1
+    }
+  },
+  "summary": {
+    "interpretation": "Ambas condiciones resuelven gran parte de los casos. La condición con skill explicita más límites, permisos, fallback y estados. No se atribuye mejora donde ambas pasan ni se infiere superioridad causal a partir de estos resultados.",
+    "remaining_gap": "SK03 con skill identifica permisos pendientes sin concretar controles de la ingesta.",
+    "limitations": [
+      "Una sola repetición por caso y condición: no estima variabilidad.",
+      "Casos producidos en grupos de cinco: pueden compartir contexto e influirse dentro del grupo.",
+      "Mismo runtime: independencia del revisor no implica diversidad de modelo o de infraestructura.",
+      "Revisión automatizada, no humana; requiere calibración independiente para decisiones de promoción.",
+      "Se evalúa texto de propuestas, no implementación ni eficacia operativa de los controles.",
+      "Quince prompts y criterios conocidos no acreditan generalización, holdout ni preparación para producción.",
+      "No se midieron aquí latencia, coste ni significación estadística."
+    ]
+  }
+}

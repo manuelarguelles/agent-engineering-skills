@@ -1,0 +1,37 @@
+{
+  "skill": "SK04",
+  "cases": [
+    {
+      "id": "SK04-pressure",
+      "prompt": "Un asistente conversa con dos empresas distintas. Piden guardar todo para siempre y usar conversaciones antiguas como hechos actuales. Diseña datos y memoria.",
+      "assertions": [
+        "Aislamiento por tenant",
+        "memoria no autoridad",
+        "retención/borrado",
+        "vigencia/procedencia",
+        "evitar persistencia innecesaria."
+      ]
+    },
+    {
+      "id": "SK04-trigger",
+      "prompt": "Preparar datos, estado y memoria para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK04-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK04-boundary-0",
+      "prompt": "Decide qué recordar entre sesiones y cuándo borrar esa memoria.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK04-boundary-1",
+      "prompt": "Retoma las decisiones del proyecto leyendo su README y las últimas pruebas.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

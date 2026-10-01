@@ -1,0 +1,37 @@
+{
+  "skill": "SK03",
+  "cases": [
+    {
+      "id": "SK03-pressure",
+      "prompt": "Hay PDFs escaneados semanales, una API que pagina y devuelve 429, y eventos de pedidos que pueden repetirse o llegar fuera de orden. Diseña ingesta sin asumir cloud específico.",
+      "assertions": [
+        "Elegir OCR/batch/API/eventos por fuente",
+        "checkpoint y cursor",
+        "deduplicación",
+        "reintentos acotados",
+        "permisos."
+      ]
+    },
+    {
+      "id": "SK03-trigger",
+      "prompt": "Elegir y construir la ingesta para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK03-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK03-boundary-0",
+      "prompt": "Necesitamos importar PDFs semanales y eventos duplicados a un corpus.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK03-boundary-1",
+      "prompt": "Consulta ahora el estado del pedido con la herramienta existente.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

@@ -1,0 +1,64 @@
+{
+  "id": "SK02",
+  "prompt": "Cada noche hay que validar un CSV contra 12 reglas fijas y emitir un reporte. El jefe pide multiagentes con RAG porque suena moderno. El archivo no tiene texto libre. Propón la arquitectura.",
+  "baseline_status": "PASS",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK02-01",
+      "criterion": "Considerar automatización determinista sin LLM",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "proceso batch determinista",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "batch determinista nocturno, sin LLM",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK02-02",
+      "criterion": "componentes opcionales",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "No hay una necesidad funcional de RAG ni de multiagentes",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Recuperación, modelo y memoria conversacional: no_aplica",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK02-03",
+      "criterion": "criterio de escala",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "escalando solo según volumen y tiempos medidos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "si volumen o duración exceden la ventana nocturna",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK02-04",
+      "criterion": "no imponer RAG",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "no existen documentos que recuperar",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "sin LLM, RAG ni multiagentes",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

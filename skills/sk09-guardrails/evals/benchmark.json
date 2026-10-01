@@ -1,0 +1,24 @@
+{
+  "skill": "SK09",
+  "status": "provisional",
+  "scope": "One design-pressure example judged on a rubric; no live agent execution",
+  "behavior_procedure_version": "0.1.0; unchanged in 0.1.1 description refinement",
+  "baseline_full_pass_assertions": 6,
+  "with_skill_full_pass_assertions": 6,
+  "assertions": 6,
+  "baseline_pass_fraction": 1.0,
+  "with_skill_pass_fraction": 1.0,
+  "descriptive_delta": 0.0,
+  "repetitions": 1,
+  "standard_deviation": null,
+  "tokens": null,
+  "cost": null,
+  "exact_latency": null,
+  "limits": [
+    "No causal inference",
+    "No production claim",
+    "Same model family/runtime; no human domain review",
+    "Grouped contexts of five cases",
+    "Triggering reviewed separately"
+  ]
+}

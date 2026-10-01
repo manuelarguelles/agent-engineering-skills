@@ -1,0 +1,38 @@
+{
+  "skill": "SK07",
+  "cases": [
+    {
+      "id": "SK07-pressure",
+      "prompt": "Hay imágenes y texto sensible. Exigimos residencia de datos, latencia p95 menor de dos segundos y bajo coste. Nadie midió los candidatos. El modelo de mayor benchmark general es favorito. Selecciona estrategia.",
+      "assertions": [
+        "No afirmar ganador sin medición",
+        "capacidades/modalidad",
+        "residencia",
+        "p95 real",
+        "muestras y coste",
+        "fallback seguro."
+      ]
+    },
+    {
+      "id": "SK07-trigger",
+      "prompt": "Elegir modelos y configuración para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK07-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK07-boundary-0",
+      "prompt": "Decide qué candidatos de modelo probar bajo restricciones de residencia y latencia.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK07-boundary-1",
+      "prompt": "Evalúa la calidad global del agente sin cambiar ni elegir modelo.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

@@ -1,0 +1,89 @@
+{
+  "reviewer": "independent_behavior_judge",
+  "skill_version": "0.1.2",
+  "scope": "Revisión acotada del texto de ingestion-refined.json, criterios SK03 de plan.json y SK03 SKILL.md 0.1.2. behavior.json previo no modificado.",
+  "cases": [
+    {
+      "id": "SK03-refined-pressure",
+      "kind": "repeated_after_refinement",
+      "status": "PASS",
+      "assertions": [
+        {
+          "criterion": "Elegir OCR/batch/API/eventos por fuente",
+          "status": "PASS",
+          "evidence": "Para PDFs semanales: batch incremental",
+          "reason": "Distingue batch/OCR para PDF, paginación API y eventos de pedidos."
+        },
+        {
+          "criterion": "checkpoint y cursor",
+          "status": "PASS",
+          "evidence": "cursor persistido tras escritura confirmada",
+          "reason": "Vincula cursor al éxito de persistencia."
+        },
+        {
+          "criterion": "deduplicación",
+          "status": "PASS",
+          "evidence": "deduplicación por identificador de evento y aplicación idempotente",
+          "reason": "Previene efectos duplicados y trata desorden por versión."
+        },
+        {
+          "criterion": "reintentos acotados",
+          "status": "PASS",
+          "evidence": "reintentos acotados con backoff y respeto de Retry-After ante 429",
+          "reason": "Acota reintentos y respeta límites de fuente."
+        },
+        {
+          "criterion": "permisos",
+          "status": "PASS",
+          "evidence": "sujetas a verificar identidad y permisos de lectura y escritura antes de capturar",
+          "reason": "La verificación explícita previa cubre el pendiente anterior de permisos."
+        }
+      ]
+    },
+    {
+      "id": "SK03-unseen",
+      "kind": "new_targeted_case",
+      "status": "PARTIAL",
+      "assertions": [
+        {
+          "criterion": "No declarar listo por HTTP 200",
+          "status": "PASS",
+          "evidence": "La ingesta no está lista: un HTTP 200 acredita únicamente esa respuesta de lectura",
+          "reason": "Distingue lectura, integridad, persistencia y permisos; no afirma ejecución de pruebas."
+        },
+        {
+          "criterion": "Bloquear escritura con permiso destino faltante",
+          "status": "PASS",
+          "evidence": "Mantendría bloqueada la rama que escribe hasta verificar identidad y permiso del destino",
+          "reason": "Bloqueo acotado con preflight mínimo y continuidad del diseño."
+        },
+        {
+          "criterion": "Preservar eventos/tombstone",
+          "status": "PARTIAL",
+          "evidence": "El borrado conservaría una marca con la versión de la entidad",
+          "reason": "Preserva tombstone versionado, pero no explicita conservar eventos originales o referencias recuperables. Descartar la aplicación de un evento antiguo puede ser correcto; el texto no acredita su conservación para auditoría/reproceso."
+        },
+        {
+          "criterion": "No resucitar entidad por alta tardía anterior",
+          "status": "PASS",
+          "evidence": "una alta de versión anterior se descartaría sin resucitarla",
+          "reason": "La marca impide resurrección; si no hay garantía de orden, pone el conflicto en cuarentena y reconcilia."
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "repeated_case": "5/5 criterios PASS; la verificación de identidad y permisos aparece ahora explícita.",
+    "new_case": "3 PASS y 1 PARTIAL bajo lectura conjunta de preservar eventos y tombstone. El tombstone y la prevención de resurrección sí están cubiertos.",
+    "closure": "Cierra la brecha textual anterior de permisos en el caso repetido. No demuestra ejecución operativa ni conservación de eventos originales en el caso nuevo.",
+    "limits": [
+      "Una salida por caso, sin repeticiones para variabilidad.",
+      "Caso repetido usado para orientar el ajuste: no es holdout ni demuestra generalización.",
+      "Caso nuevo dirigido al mismo riesgo; no representa cobertura amplia.",
+      "No hay baseline emparejado nuevo para atribuir causalidad de la mejora.",
+      "Revisión automatizada no humana; lectura explícita de la skill impide tratarla como ciega.",
+      "Mismo entorno/runtime de la evaluación; no constituye validación independiente de infraestructura.",
+      "Las salidas son diseños propuestos, sin evidencia de permisos efectivos, persistencia, despliegue o pruebas ejecutadas."
+    ]
+  }
+}

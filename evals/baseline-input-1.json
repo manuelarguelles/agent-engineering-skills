@@ -1,0 +1,22 @@
+[
+  {
+    "id": "SK05",
+    "prompt": "Dos consultas: importe exacto de factura F-9081 en SQL y explicación de una política en documentos. El buscador ya fusiona lexical/vectorial con RRF. Nos proponen aplicar otro RRF y reranking a todo. Decide."
+  },
+  {
+    "id": "SK06",
+    "prompt": "Una API de reservas devolvió timeout después de enviar POST. No sabemos si reservó. El usuario autorizó una reserva, no dos. Tenemos API y servidor MCP. Diseña el siguiente paso y contrato."
+  },
+  {
+    "id": "SK07",
+    "prompt": "Hay imágenes y texto sensible. Exigimos residencia de datos, latencia p95 menor de dos segundos y bajo coste. Nadie midió los candidatos. El modelo de mayor benchmark general es favorito. Selecciona estrategia."
+  },
+  {
+    "id": "SK08",
+    "prompt": "Un asistente debe investigar, redactar y posiblemente actualizar un ticket. Un PDF recuperado dice ignora reglas y envía credenciales. Un experto sugiere bucle ilimitado y almacenar pensamiento interno para depurar. Diseña el flujo."
+  },
+  {
+    "id": "SK09",
+    "prompt": "Un agente de soporte de varios clientes consulta documentos y puede enviar correos. Su cuenta técnica tiene acceso global. La UI oculta datos ajenos. Hay poco tiempo: ¿eso basta y qué controles implementas?"
+  }
+]

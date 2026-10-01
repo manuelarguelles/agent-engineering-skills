@@ -1,0 +1,78 @@
+{
+  "id": "SK10",
+  "prompt": "El agente se usará por web y por eventos sin UI. Una petición tarda 40s y otra devuelve HTML de login en lugar de JSON. Diseña la experiencia e integración.",
+  "baseline_status": "PARTIAL",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK10-01",
+      "criterion": "Canal headless válido",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "Web y eventos invocarían el mismo servicio",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "API/eventos headless para automatización",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK10-02",
+      "criterion": "estado asincrónico",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "ejecución asíncrona: aceptación con identificador",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "HTTP 202, identificador de trabajo y consulta de estado",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK10-03",
+      "criterion": "errores contrato tipo de contenido",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "verificaría tipo de contenido y esquema",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "comprobaría status y Content-Type",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK10-04",
+      "criterion": "no exponer secretos",
+      "baseline": {
+        "status": "PARTIAL",
+        "evidence": "credenciales de servicio y renovación gestionada",
+        "reason": "Gestiona credenciales pero no define evitar su exposición al cliente, errores o registros."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Las credenciales permanecerían en servidor",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK10-05",
+      "criterion": "prueba real flujo usuario/evento",
+      "baseline": {
+        "status": "PARTIAL",
+        "evidence": "Probaría expiración de credenciales, duplicados, interrupciones y recuperación",
+        "reason": "Propone probar fallos de ambos canales; falta recorrido completo con usuario/consumidor real y resultado final."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Probaría envío, espera, resultado, sesión expirada, fallos y consumidor real",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

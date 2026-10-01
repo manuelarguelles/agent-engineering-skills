@@ -1,0 +1,38 @@
+{
+  "skill": "SK12",
+  "cases": [
+    {
+      "id": "SK12-pressure",
+      "prompt": "Hay respuestas lentas. Operaciones pide registrar prompts completos, correos y tokens de acceso para diagnosticar. Las trazas cruzan modelo, retrieval y herramientas; coste parcial. Define observabilidad.",
+      "assertions": [
+        "IDs correlación",
+        "redacción/minimización",
+        "coste desconocido distinto cero",
+        "latencia por etapa",
+        "alertas con acción",
+        "retención."
+      ]
+    },
+    {
+      "id": "SK12-trigger",
+      "prompt": "Instrumentar y operar para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK12-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK12-boundary-0",
+      "prompt": "Añade trazas para localizar qué etapa vuelve lenta cada respuesta.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK12-boundary-1",
+      "prompt": "Publica una nueva versión y prepara su rollback.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

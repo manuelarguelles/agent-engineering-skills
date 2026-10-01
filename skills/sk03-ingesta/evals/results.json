@@ -1,0 +1,78 @@
+{
+  "id": "SK03",
+  "prompt": "Hay PDFs escaneados semanales, una API que pagina y devuelve 429, y eventos de pedidos que pueden repetirse o llegar fuera de orden. Diseña ingesta sin asumir cloud específico.",
+  "baseline_status": "PARTIAL",
+  "with_skill_status": "PARTIAL",
+  "assertions": [
+    {
+      "id": "SK03-01",
+      "criterion": "Elegir OCR/batch/API/eventos por fuente",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "Para PDFs conservaría archivo y hash, ejecutaría OCR",
+        "reason": "Distingue OCR, API y eventos; el procesamiento semanal batch queda implícito en los adaptadores y registro durable."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "PDF: batch semanal y OCR",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK03-02",
+      "criterion": "checkpoint y cursor",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "persistiría el cursor después de guardar cada página",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "confirmar checkpoint después de persistir cada página",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK03-03",
+      "criterion": "deduplicación",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "identificador de evento y consumidor idempotente",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "deduplicación por identificador y escritura idempotente",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK03-04",
+      "criterion": "reintentos acotados",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "presupuesto de reintentos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "límite de intentos y alerta",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK03-05",
+      "criterion": "permisos",
+      "baseline": {
+        "status": "FAIL",
+        "evidence": null,
+        "reason": "No aborda permisos de las fuentes en la respuesta."
+      },
+      "with_skill": {
+        "status": "PARTIAL",
+        "evidence": "Permisos, volumen, SLA y semántica de orden quedan pendientes del propietario de cada fuente.",
+        "reason": "Identifica permisos como pendiente con dueño, pero no define comprobación o control de acceso de la ingesta."
+      }
+    }
+  ]
+}

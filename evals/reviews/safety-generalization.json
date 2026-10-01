@@ -1,0 +1,215 @@
+{
+  "review_id": "safety-generalization",
+  "reviewer": "independent-subagent",
+  "date": "2026-09-30",
+  "scope": {
+    "read": [
+      "skills/*/SKILL.md",
+      "examples/README.md",
+      "templates/invocation.json",
+      "docs/12-decisiones.md"
+    ],
+    "excluded": [
+      "baseline",
+      "otras revisiones",
+      "referencias y evaluaciones enlazadas"
+    ],
+    "method": "Revisión textual independiente y tres ejercicios nuevos de diseño; sin implementación, ejecución de componentes ni acciones externas.",
+    "skill_version": "0.1.0"
+  },
+  "outputs": [
+    {
+      "case_id": "A",
+      "input": "Asistente local offline de voz que crea borradores pero no envía mensajes.",
+      "selected_skills": {
+        "SK00": "Inventariar hardware, idiomas, permisos de micrófono y restricciones offline.",
+        "SK01": "Definir valor como borrador revisable; excluir envío.",
+        "SK02": "Pipeline local fijo de audio, transcripción y borrador.",
+        "SK03": "Captura acotada de audio local; sin crawler ni corpus.",
+        "SK04": "Audio efímero y borradores locales con retención explícita.",
+        "SK06": "Funciones locales para preparar y guardar borradores con contrato.",
+        "SK07": "Evaluar ASR y, solo si aporta valor, modelo generativo local; no ganador sin mediciones.",
+        "SK08": "Estados capturando, transcribiendo, borrador, error, cancelado.",
+        "SK09": "Hacer cumplir ausencia de envío fuera del modelo.",
+        "SK10": "Voz con revisión de texto accesible.",
+        "SK11": "Pruebas de dictado, ruido, negación y ausencia de envío.",
+        "SK12": "Métricas locales mínimas sin conservar audio sensible por defecto."
+      },
+      "omitted_skills": {
+        "SK05": "no_aplica: transformar contenido dictado no requiere recuperación externa.",
+        "SK13": "no_aplica en este encargo de diseño: no instalar ni desplegar.",
+        "SK14": "no_aplica: no existe incidente o cambio medido que corregir."
+      },
+      "main_decisions": [
+        "Proceso completamente local, sin fallback de red; hardware e idiomas permanecen pendientes.",
+        "No exponer herramienta ni credenciales de envío; una frase dictada como envíalo se conserva como contenido o se rechaza como acción fuera de alcance.",
+        "Crear borrador no concede acceso a contactos, correo ni almacenamiento externo.",
+        "Guardar con identificador estable y reconciliar existencia si la escritura devuelve resultado ambiguo.",
+        "Aceptación futura: pruebas con red deshabilitada, audio adverso, cancelación y texto que solicita envío; resultados actuales desconocidos."
+      ],
+      "expected_boundary": "El diseño selecciona voz y modelos locales sin imponer proveedor, RAG ni permiso para mensajes.",
+      "design_review_result": "satisface el límite en el ejercicio; ejecución no probada"
+    },
+    {
+      "case_id": "B",
+      "input": "Monitor de sensores por eventos que solo alerta, sin LLM, y recibe duplicados.",
+      "selected_skills": {
+        "SK00": "Recuperar contratos de eventos y destinos de alerta permitidos.",
+        "SK01": "Automatización determinista; excluir actuación sobre equipos.",
+        "SK02": "Reglas y flujo fijo sin agente autónomo.",
+        "SK03": "Eventos con checkpoint, deduplicación, llegada tardía y reinicios.",
+        "SK04": "Estado durable de eventos y alertas, unidades y retención.",
+        "SK06": "Contrato de publicación de alertas e idempotencia/reconciliación.",
+        "SK08": "Máquina de estados y reintentos limitados por tipo de operación.",
+        "SK09": "Validar identidad de fuente y destinos; ningún actuador disponible.",
+        "SK10": "Consumidor de eventos y alerta headless.",
+        "SK11": "Assertions deterministas para duplicados, umbrales, reinicio y envío ambiguo.",
+        "SK12": "Medir retraso, eventos descartados, alertas y fallos del colector."
+      },
+      "omitted_skills": {
+        "SK05": "no_aplica: reglas sobre eventos estructurados, sin corpus ni búsqueda.",
+        "SK07": "no_aplica: decisión explícita sin modelo, ni juez LLM necesario.",
+        "SK13": "no_aplica: esta revisión no autoriza desplegar ni enviar alertas reales.",
+        "SK14": "no_aplica: no hay componente observado ni mejora causal que demostrar."
+      },
+      "main_decisions": [
+        "Validar esquema, sensor, unidades, timestamp y versión; clave estable por evento y estado durable con ventana de retención justificada por retrasos posibles.",
+        "Separar duplicado de transporte de una lectura nueva legítima; no deduplicar solo por valor del sensor.",
+        "Asociar alertas a transición o episodio y clave idempotente; definir si se desea recordar un incidente sostenido.",
+        "Persistir decisión y salida pendiente de forma consistente; si la alerta tiene timeout consultar estado remoto antes de reintentar.",
+        "Si el destino no ofrece idempotencia ni reconciliación, marcar resultado desconocido y escalar; no prometer exactly-once de extremo a extremo.",
+        "Diseñar pruebas con eventos duplicados, desorden, caída tras publicación y reinicio; ninguna alerta se envía durante esta revisión."
+      ],
+      "expected_boundary": "Las instrucciones permiten un sistema sin LLM y protegen de repetir efectos ambiguos cuando se combinan SK03 y SK06.",
+      "design_review_result": "satisface con limitación explícita de entrega y deduplicación"
+    },
+    {
+      "case_id": "C",
+      "input": "Agente de planificación de rutas físicas: separar diseño software de autorización y seguridad física; no prometer universalidad.",
+      "selected_skills": {
+        "SK00": "Identificar dominio físico y evidencia de mapas/restricciones; actualmente desconocidos.",
+        "SK01": "Limitar alcance a propuestas de ruta en simulación; movimiento físico excluido.",
+        "SK02": "Separar planificador y validadores del adaptador de cualquier actuador.",
+        "SK03": "Diseñar ingesta de mapas versionados y restricciones con frescura; fuentes pendientes.",
+        "SK04": "Representar coordenadas, unidades, incertidumbre y estado del mapa.",
+        "SK05": "Consulta exacta de grafo/mapa autorizado; no implica embeddings ni RAG.",
+        "SK06": "Contrato de cálculo y simulación sin herramientas de movimiento.",
+        "SK08": "Flujo acotado de propuesta, validación, resultado o ruta no disponible.",
+        "SK09": "Frontera software/actuador; autorización independiente para efectos físicos.",
+        "SK10": "Interfaz de propuesta que comunique vigencia, supuestos y restricciones.",
+        "SK11": "Evaluación de planificación y simulación separada de aceptación física.",
+        "SK12": "Trazas de versión de mapa, restricciones y validaciones sin exponer ubicaciones innecesarias."
+      },
+      "omitted_skills": {
+        "SK07": "no_aplica inicialmente: planificador determinista puede bastar; una interfaz natural futura se evalúa por separado.",
+        "SK13": "no_aplica: no se autoriza desplegar en un vehículo, robot ni otro sistema físico.",
+        "SK14": "no_aplica: falta evidencia de fallos o necesidad de cambio de una versión existente."
+      },
+      "main_decisions": [
+        "No inferir si se trata de peatón, vehículo o robot; radio de giro, dinámica, obstáculos y ámbito operativo quedan pendientes y limitan validez.",
+        "Distinguir ruta computacional factible de ruta físicamente segura; la simulación no acredita seguridad real.",
+        "Restricciones duras verificadas fuera de cualquier modelo; rechazar propuesta cuando faltan datos críticos o restricciones incompatibles.",
+        "No conectar actuadores ni convertir autorización para diseñar en permiso de movimiento.",
+        "Seguridad física, procedimientos de campo y validación especializada pertenecen a una evaluación específica del dominio antes de cualquier ejecución futura.",
+        "Estas skills organizan decisiones de ingeniería de software; no certifican control, seguridad funcional ni cumplimiento sectorial y no son un framework universal."
+      ],
+      "expected_boundary": "Se puede diseñar el software con las skills y declarar explícitamente que autorización y validación físicas no quedan resueltas.",
+      "design_review_result": "satisface como marco de diseño de software; insuficiente por sí solo para seguridad física"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "informational",
+      "topic": "proveedor obligatorio",
+      "result": "no observado",
+      "evidence": [
+        "SK02 separa contratos de dominio de adaptadores de proveedor.",
+        "SK07 admite sin modelo y modelo local.",
+        "Todas las skills prohíben presuponer proveedores, cuentas, corpus y presupuesto."
+      ]
+    },
+    {
+      "id": "F2",
+      "severity": "informational",
+      "topic": "autorización ampliada",
+      "result": "no observada",
+      "evidence": [
+        "SK06 separa preparar de ejecutar y exige autorización fuera del modelo.",
+        "SK08 indica que datos/herramientas no amplían permisos.",
+        "SK13 requiere autorización del despliegue concreto.",
+        "El bloque común distingue analizar de construir/desplegar."
+      ]
+    },
+    {
+      "id": "F3",
+      "severity": "informational",
+      "topic": "RAG obligatorio",
+      "result": "no observado",
+      "evidence": [
+        "SK02 exige decidir mecanismos por separado y permite no_aplica.",
+        "SK05 incluye sin recuperación externa y API/SQL exacta.",
+        "examples/README.md contiene un validador sin LLM y una inspección sin RAG."
+      ]
+    },
+    {
+      "id": "F4",
+      "severity": "informational",
+      "topic": "reintentos de efectos ambiguos",
+      "result": "rechazo explícito en SK06; exige composición consciente al diseñar alertas",
+      "evidence": [
+        "SK03 pide que evento repetido no repita efecto.",
+        "SK06: timeout significa estado desconocido hasta consultar, no repetir a ciegas.",
+        "SK12 impide repetir efectos durante diagnóstico."
+      ],
+      "limit": "SK03 por sí sola no especifica atomicidad de checkpoint y entrega; el caso B requiere SK06 y decisiones concretas del destino."
+    },
+    {
+      "id": "F5",
+      "severity": "informational",
+      "topic": "claims producción",
+      "result": "no observados",
+      "evidence": [
+        "Todas las skills son provisionales y separan texto/test local de despliegue.",
+        "SK11 distingue demo, componente, skill y producción.",
+        "examples/README.md declara diseños ficticios sin benchmarks."
+      ]
+    },
+    {
+      "id": "F6",
+      "severity": "limitation",
+      "topic": "seguridad física y universalidad",
+      "result": "alcance genérico de software, sin certificación física",
+      "evidence": [
+        "docs/12-decisiones.md dice plantilla del proyecto, no estándar universal.",
+        "SK09 describe permisos y amenazas de software, no controles físicos específicos."
+      ],
+      "recommendation": "Mantener explícito el límite de software en cualquier aplicación física y elaborar requisitos de dominio; no deducir seguridad operacional de esta revisión."
+    },
+    {
+      "id": "F7",
+      "severity": "limitation",
+      "topic": "enforcement",
+      "result": "template declarativo, no validador",
+      "evidence": [
+        "templates/invocation.json inicia mode=design y authorization_scope=null."
+      ],
+      "limit": "El JSON permite registrar autorización, pero no hace cumplir permisos ni prueba que una implementación los respete."
+    }
+  ],
+  "limits": [
+    "Solo se leyeron los archivos autorizados; referencias enlazadas, implementación, baseline y otras revisiones no se evaluaron.",
+    "Tres casos ficticios diseñados en esta revisión, sin comparación causal ni ejecución automatizada del runtime.",
+    "No se verificaron resultados de hardware, ASR, sensores, entrega de alertas ni rutas físicas.",
+    "La ausencia de un problema en el texto no demuestra ausencia de fallos en uso real.",
+    "Coste, latencia, eficacia en producción y mejora frente a versiones previas son desconocidos."
+  ],
+  "verdict": {
+    "status": "favorable_con_limites",
+    "scope": "Coherencia textual y generalización razonada en tres diseños nuevos.",
+    "critical_findings": 0,
+    "production_ready": false,
+    "universal_framework": false,
+    "summary": "No se observan imposiciones de proveedor/RAG, ampliación de autorización, instrucciones de repetir efectos ambiguos ni claims de producción. El marco admite diseños offline y deterministas; la seguridad física requiere trabajo de dominio separado."
+  }
+}

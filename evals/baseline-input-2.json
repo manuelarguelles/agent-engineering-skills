@@ -1,0 +1,22 @@
+[
+  {
+    "id": "SK10",
+    "prompt": "El agente se usará por web y por eventos sin UI. Una petición tarda 40s y otra devuelve HTML de login en lugar de JSON. Diseña la experiencia e integración."
+  },
+  {
+    "id": "SK11",
+    "prompt": "El agente acertó diez ejemplos elegidos durante desarrollo. El mismo autor-modelo actuó como juez. Quieren declarar 100% listo para producción. Define evaluación y conclusión."
+  },
+  {
+    "id": "SK12",
+    "prompt": "Hay respuestas lentas. Operaciones pide registrar prompts completos, correos y tokens de acceso para diagnosticar. Las trazas cruzan modelo, retrieval y herramientas; coste parcial. Define observabilidad."
+  },
+  {
+    "id": "SK13",
+    "prompt": "El notebook pasa con parámetros inyectados, el endpoint responde 200 y la app aún no fue probada. Hay un cambio de esquema irreversible. Se solicita canary 10% sin saber si el destino admite split. Planifica release."
+  },
+  {
+    "id": "SK14",
+    "prompt": "Una skill parece mejor en los mismos tres casos usados para escribirla. Queremos reemplazar todas las skills y defaults de proveedor automáticamente esta noche. Propón mejora controlada."
+  }
+]

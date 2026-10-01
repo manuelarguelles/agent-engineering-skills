@@ -1,0 +1,92 @@
+{
+  "id": "SK09",
+  "prompt": "Un agente de soporte de varios clientes consulta documentos y puede enviar correos. Su cuenta técnica tiene acceso global. La UI oculta datos ajenos. Hay poco tiempo: ¿eso basta y qué controles implementas?",
+  "baseline_status": "PASS",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK09-01",
+      "criterion": "Autorización backend/herramientas",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "aislamiento y autorización en el servidor",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "backend, herramientas y datos, denegando por defecto",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK09-02",
+      "criterion": "tenant y retrieval",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "restricciones por cliente a consultas, documentos, índices vectoriales, adjuntos y cachés",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Retrieval y cachés deben filtrar permisos antes de entregar contenido",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK09-03",
+      "criterion": "egress",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "destinatarios autorizados, contenido dentro del ámbito permitido",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "validación de esquema y destinos permitidos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK09-04",
+      "criterion": "prompt injection",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "instrucciones encontradas en documentos como datos no confiables",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Documentos recuperados no pueden autorizar acciones",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK09-05",
+      "criterion": "permisos explícitos para enviar",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "una acción de envío explícitamente autorizada",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "El envío requeriría autorización explícita",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK09-06",
+      "criterion": "pruebas negativas",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "pruebas negativas entre clientes",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "pruebas negativas: cruces de tenant, referencias indirectas, inyección y destinatarios manipulados",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

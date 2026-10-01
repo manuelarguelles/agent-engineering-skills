@@ -1,0 +1,78 @@
+{
+  "id": "SK04",
+  "prompt": "Un asistente conversa con dos empresas distintas. Piden guardar todo para siempre y usar conversaciones antiguas como hechos actuales. Diseña datos y memoria.",
+  "baseline_status": "PASS",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK04-01",
+      "criterion": "Aislamiento por tenant",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "Separaría los datos por empresa desde autenticación",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Derivar tenant de la identidad autenticada",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK04-02",
+      "criterion": "memoria no autoridad",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "evidencia de lo dicho en una fecha, no un hecho vigente",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Una memoria es hipótesis contextual",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK04-03",
+      "criterion": "retención/borrado",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "plazos con los responsables de ambas empresas, contemplando exportación, eliminación",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "revisión, corrección, exportación y borrado",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK04-04",
+      "criterion": "vigencia/procedencia",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "procedencia, autor, fecha, ámbito y vencimiento",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "procedencia, versión, fecha de captura, vigencia y expiración",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK04-05",
+      "criterion": "evitar persistencia innecesaria",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "reduciríamos datos personales innecesarios",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "estado efímero por defecto",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

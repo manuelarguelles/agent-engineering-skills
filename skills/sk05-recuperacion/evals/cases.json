@@ -1,0 +1,37 @@
+{
+  "skill": "SK05",
+  "cases": [
+    {
+      "id": "SK05-pressure",
+      "prompt": "Dos consultas: importe exacto de factura F-9081 en SQL y explicación de una política en documentos. El buscador ya fusiona lexical/vectorial con RRF. Nos proponen aplicar otro RRF y reranking a todo. Decide.",
+      "assertions": [
+        "SQL exacto versus documental",
+        "filtros ACL antes de contexto",
+        "no doble RRF",
+        "reranking solo medido",
+        "abstención y citas."
+      ]
+    },
+    {
+      "id": "SK05-trigger",
+      "prompt": "Elegir recuperación y grounding para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK05-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK05-boundary-0",
+      "prompt": "Diseña cómo buscar políticas y citar los fragmentos usados en cada respuesta.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK05-boundary-1",
+      "prompt": "Recupera las decisiones y pendientes del proyecto para retomarlo.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

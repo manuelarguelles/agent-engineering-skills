@@ -1,0 +1,78 @@
+{
+  "id": "SK05",
+  "prompt": "Dos consultas: importe exacto de factura F-9081 en SQL y explicación de una política en documentos. El buscador ya fusiona lexical/vectorial con RRF. Nos proponen aplicar otro RRF y reranking a todo. Decide.",
+  "baseline_status": "PARTIAL",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK05-01",
+      "criterion": "SQL exacto versus documental",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "consultaría SQL con parámetros",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "el importe de F-9081 se obtiene mediante SQL parametrizado",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK05-02",
+      "criterion": "filtros ACL antes de contexto",
+      "baseline": {
+        "status": "PARTIAL",
+        "evidence": "permisos del solicitante y alcance de empresa",
+        "reason": "Aplica permisos a SQL; no explicita ACL para recuperación documental antes de formar el contexto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Aplicaría ACL y vigencia antes del contexto, también en cachés.",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK05-03",
+      "criterion": "no doble RRF",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "No añadiría otro RRF a la misma lista",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Rechazo un segundo RRF",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK05-04",
+      "criterion": "reranking solo medido",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "Se habilitaría si mejora resultados dentro del presupuesto",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Lo incorporaría si la mejora justifica el coste adicional",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK05-05",
+      "criterion": "abstención y citas",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "recuperaría fragmentos con referencias",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Citaría pasajes que resuelvan a la fuente correcta",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

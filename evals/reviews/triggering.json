@@ -1,0 +1,714 @@
+{
+  "review": "independent-triggering-text-review",
+  "scope": "15 frontmatters skills/*/SKILL.md, sus evals/cases.json y README.md; no se consultaron cuerpos de skills, otras revisiones ni baseline.",
+  "method": "Juicio semántico del texto del catálogo sobre los casos positivos y negativos existentes, más casos cercanos propuestos. No se ejecutó un router ni se midió autodetección real. true_positive/true_negative nombran ejemplos evaluados, no métricas empíricas.",
+  "summary": {
+    "skills_reviewed": 15,
+    "supplied_positive_examples_judged_consistent": 15,
+    "supplied_negative_examples_judged_consistent": 15,
+    "actual_router_runs": 0,
+    "observed_false_positives": null,
+    "observed_false_negatives": null,
+    "production_or_statistical_claim": false
+  },
+  "global_findings": [
+    {
+      "severity": "medium",
+      "type": "weak_trigger_eval_coverage",
+      "evidence": "Los 15 positivos repiten prácticamente la primera frase de su description y los 15 negativos son exactamente: Traducir una frase sin diseñar ni modificar un agente.",
+      "impact": "No discrimina solapamientos entre skills, paráfrasis naturales, consultas cotidianas con vocabulario del dominio o tareas con contexto implícito.",
+      "minimal_proposal": "Añadir por skill un positivo sin copia de la description y un negativo cercano de otra skill o de uso cotidiano; ejecutar después el catálogo completo con el router real y registrar selección y denominadores."
+    },
+    {
+      "severity": "medium",
+      "type": "tautological_trigger_clause",
+      "evidence": "Las 15 descriptions comparten: Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "impact": "La exclusión de consultas cotidianas ayuda; la cláusula de responsabilidad no aporta señales diferenciadoras. Áreas como operar, decisiones y mejorar componentes resultan amplias.",
+      "minimal_proposal": "Sustituir solo la cláusula tautológica por 2–4 responsabilidades observables; conservar el alcance de ingeniería de agentes y la exclusión cotidiana."
+    },
+    {
+      "severity": "low",
+      "type": "README_only_non_agent_signal",
+      "evidence": "README permite concluir que la tarea se resuelve mejor sin agente; SK02 description habla solo de elegir arquitectura y mecanismos al diseñar, construir o revisar un agente.",
+      "impact": "Una petición de automatización determinista con requisitos completos pero sin la palabra agente podría pasar inadvertida; riesgo inferido, no observado.",
+      "minimal_proposal": "Hacer explícito en SK02 elegir entre automatización determinista, una llamada a modelo o arquitectura de agente."
+    }
+  ],
+  "skills": [
+    {
+      "skill": "SK00",
+      "path": "skills/sk00-contexto/SKILL.md",
+      "description": "Recuperar contexto y evidencia al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK00-trigger",
+        "prompt": "Recuperar contexto y evidencia para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK00-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Recuperar contexto y evidencia al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Revisar las trazas de ayer y recuperar evidencia de la latencia del agente.",
+            "neighbor_skills": "SK01/SK12"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Recuperar el estado de trabajo, decisiones previas y evidencia del proyecto al iniciar o retomar su diseño o construcción; no sustituye la instrumentación de producción."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Retoma el proyecto y separa decisiones vigentes de notas antiguas.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Busca ahora en nuestros documentos la política de vacaciones.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK01",
+      "path": "skills/sk01-caso-y-valor/SKILL.md",
+      "description": "Definir el caso y las decisiones al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK01-trigger",
+        "prompt": "Definir el caso y las decisiones para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK01-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "medium",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Definir el caso y las decisiones al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Define las decisiones de arquitectura y qué modelo usar para nuestro agente.",
+            "neighbor_skills": "SK02/SK07"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Definir usuarios, problema, tareas, alcance, métricas de éxito y valor esperado antes de elegir mecanismos del agente."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Define para quién sirve el asistente y cómo mediremos si ahorra trabajo.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Elige entre búsqueda léxica y vectorial con el caso de uso ya fijado.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK02",
+      "path": "skills/sk02-arquitectura/SKILL.md",
+      "description": "Elegir arquitectura y mecanismos al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK02-trigger",
+        "prompt": "Elegir arquitectura y mecanismos para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK02-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "medium",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Elegir arquitectura y mecanismos al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Elegir el mecanismo de búsqueda del agente.",
+            "neighbor_skills": "SK03–SK10"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Elegir la arquitectura global y sus componentes según requisitos, incluyendo reglas o automatización sin agente; derivar decisiones especializadas a la skill correspondiente."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Decide si esta validación de reglas necesita LLM o un job determinista.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Ajusta únicamente el límite de reintentos de la herramienta ya diseñada.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK03",
+      "path": "skills/sk03-ingesta/SKILL.md",
+      "description": "Elegir y construir la ingesta al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK03-trigger",
+        "prompt": "Elegir y construir la ingesta para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK03-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Elegir y construir la ingesta al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Diseña la llamada a una API que alimenta los datos del agente.",
+            "neighbor_skills": "SK04/SK06"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Diseñar o construir adquisición y actualización de fuentes para el agente: batch, API, eventos, CDC, OCR, cursores y deduplicación."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Necesitamos importar PDFs semanales y eventos duplicados a un corpus.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Consulta ahora el estado del pedido con la herramienta existente.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK04",
+      "path": "skills/sk04-datos-y-memoria/SKILL.md",
+      "description": "Preparar datos, estado y memoria al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK04-trigger",
+        "prompt": "Preparar datos, estado y memoria para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK04-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Preparar datos, estado y memoria al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Prepara datos y contexto para continuar el agente.",
+            "neighbor_skills": "SK00/SK03/SK05"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Diseñar representación de datos, estado de ejecución y memoria persistente, con procedencia, vigencia, aislamiento y retención."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Decide qué recordar entre sesiones y cuándo borrar esa memoria.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Retoma las decisiones del proyecto leyendo su README y las últimas pruebas.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK05",
+      "path": "skills/sk05-recuperacion/SKILL.md",
+      "description": "Elegir recuperación y grounding al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK05-trigger",
+        "prompt": "Elegir recuperación y grounding para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK05-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Elegir recuperación y grounding al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Recuperar contexto y evidencia para nuestro agente.",
+            "neighbor_skills": "SK00/SK06"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Diseñar o comparar recuperación de conocimiento para las respuestas del agente: contexto directo, SQL/API, búsqueda léxica, vectorial o híbrida, filtros y grounding."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Diseña cómo buscar políticas y citar los fragmentos usados en cada respuesta.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Recupera las decisiones y pendientes del proyecto para retomarlo.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK06",
+      "path": "skills/sk06-herramientas/SKILL.md",
+      "description": "Diseñar herramientas y acciones al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK06-trigger",
+        "prompt": "Diseñar herramientas y acciones para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK06-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Diseñar herramientas y acciones al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Diseña permisos e invocación de una API para el agente.",
+            "neighbor_skills": "SK03/SK09"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Diseñar o implementar contratos de herramientas y acciones del agente, incluidos entradas, efectos, errores, idempotencia y adaptadores; no equivale a ejecutar una acción cotidiana."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Define el contrato de una herramienta que reserva citas sin duplicarlas.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Reserva una cita usando la herramienta ya disponible.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK07",
+      "path": "skills/sk07-modelos/SKILL.md",
+      "description": "Elegir modelos y configuración al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK07-trigger",
+        "prompt": "Elegir modelos y configuración para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK07-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Elegir modelos y configuración al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Compara dos modelos con casos representativos del agente.",
+            "neighbor_skills": "SK02/SK11"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Seleccionar modelos y parámetros según capacidades, modalidad, residencia, coste y latencia, mediante medición en tareas representativas."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Decide qué candidatos de modelo probar bajo restricciones de residencia y latencia.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Evalúa la calidad global del agente sin cambiar ni elegir modelo.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK08",
+      "path": "skills/sk08-orquestacion/SKILL.md",
+      "description": "Construir razonamiento y coordinación al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK08-trigger",
+        "prompt": "Construir razonamiento y coordinación para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK08-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Construir razonamiento y coordinación al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Diseña un workflow de herramientas con límites y permisos.",
+            "neighbor_skills": "SK02/SK06/SK09"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Diseñar o construir control de flujo, estado, límites de iteración y coordinación de herramientas o agentes; elegir entre llamada simple, workflow o bucle acotado."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Implementa un flujo que investiga, redacta y termina tras un máximo de pasos.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Piensa paso a paso y responde esta pregunta cotidiana.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK09",
+      "path": "skills/sk09-guardrails/SKILL.md",
+      "description": "Diseñar guardrails y permisos al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK09-trigger",
+        "prompt": "Diseñar guardrails y permisos para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK09-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Diseñar guardrails y permisos al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Define el aislamiento por tenant de memoria y herramientas.",
+            "neighbor_skills": "SK04/SK06/SK08"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Diseñar o comprobar controles de seguridad del agente: autorización, aislamiento, prompt injection, salida de datos y validación de acciones."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Revisa cómo impedir que documentos recuperados ordenen enviar secretos.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Explícame qué significa permiso en esta oración.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK10",
+      "path": "skills/sk10-canal/SKILL.md",
+      "description": "Construir canal y experiencia al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK10-trigger",
+        "prompt": "Construir canal y experiencia para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK10-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Construir canal y experiencia al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "La API del agente devuelve HTML en vez de JSON; diseña integración.",
+            "neighbor_skills": "SK06/SK13"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Diseñar o implementar la interfaz de uso del agente por web, chat, API, CLI, eventos, voz o multimodal, incluidos estados, errores y experiencia."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Diseña la interfaz para solicitudes asíncronas de un agente sin pantalla.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Despliega el backend ya validado sin modificar sus interfaces.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK11",
+      "path": "skills/sk11-evaluacion/SKILL.md",
+      "description": "Evaluar y comparar el agente al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK11-trigger",
+        "prompt": "Evaluar y comparar el agente para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK11-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "low",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Evaluar y comparar el agente al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Mide si una versión nueva del componente mejora al agente.",
+            "neighbor_skills": "SK07/SK12/SK14"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Diseñar o ejecutar evaluación del agente y sus variantes con tareas, riesgos, baseline, holdout, métricas de calidad, latencia y coste."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Prepara casos independientes para comprobar si nuestro agente está listo.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Activa una alerta de latencia usando los umbrales ya acordados.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK12",
+      "path": "skills/sk12-observabilidad/SKILL.md",
+      "description": "Instrumentar y operar al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK12-trigger",
+        "prompt": "Instrumentar y operar para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK12-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "medium",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Instrumentar y operar al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Opera el agente y recupera el servicio tras fallar el despliegue.",
+            "neighbor_skills": "SK11/SK13"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Instrumentar y diagnosticar el agente en ejecución con trazas, métricas, costes, correlación y alertas, minimizando datos sensibles."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Añade trazas para localizar qué etapa vuelve lenta cada respuesta.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Publica una nueva versión y prepara su rollback.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK13",
+      "path": "skills/sk13-despliegue/SKILL.md",
+      "description": "Desplegar y recuperar al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK13-trigger",
+        "prompt": "Desplegar y recuperar para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK13-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "medium",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Desplegar y recuperar al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Recuperar contexto para nuestro agente.",
+            "neighbor_skills": "SK00/SK05/SK12"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Preparar o ejecutar releases y recuperación del servicio del agente: configuración, pruebas del destino, migraciones, rollback y capacidades de despliegue."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Prepara un release con migración y un plan verificable de recuperación.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Recupera fragmentos de una política para fundamentar una respuesta.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    },
+    {
+      "skill": "SK14",
+      "path": "skills/sk14-mejora/SKILL.md",
+      "description": "Mejorar skills y componentes al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+      "true_positive": {
+        "case_id": "SK14-trigger",
+        "prompt": "Mejorar skills y componentes para nuestro agente",
+        "expected_activation": true,
+        "text_judgment_activation": true,
+        "assessment": "Coincide literalmente con la responsabilidad de la description; positivo plausible, de baja dificultad.",
+        "router_observed": null
+      },
+      "true_negative": {
+        "case_id": "SK14-negative",
+        "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+        "expected_activation": false,
+        "text_judgment_activation": false,
+        "assessment": "Excluye explícitamente diseño/modificación de agentes; negativo plausible pero no prueba fronteras cercanas.",
+        "router_observed": null
+      },
+      "findings": [
+        {
+          "severity": "medium",
+          "type": "description_specificity_and_overlap",
+          "evidence": {
+            "description": "Mejorar skills y componentes al diseñar, construir o revisar un agente. Activar cuando la tarea requiere esta responsabilidad; no para ejecutar una consulta cotidiana del agente.",
+            "near_boundary_prompt": "Mejora la búsqueda del agente.",
+            "neighbor_skills": "SK07/SK11 y skills especializadas"
+          },
+          "assessment": "El encabezado identifica el área, pero no delimita esta petición frente a las skills vecinas. El solapamiento puede ser una composición válida; no es un false positive observado.",
+          "minimal_proposal": "Proponer y validar cambios versionados en skills o componentes a partir de fallos medidos, comparando baseline y regresiones antes de adoptarlos."
+        }
+      ],
+      "additional_cases_proposed": [
+        {
+          "prompt": "Una skill falla en nuevos casos: compara una revisión con el baseline antes de reemplazarla.",
+          "expected_activation": true
+        },
+        {
+          "prompt": "Construye por primera vez la ingesta del agente sin una versión previa que comparar.",
+          "expected_activation": false
+        }
+      ],
+      "router_executed": false
+    }
+  ]
+}

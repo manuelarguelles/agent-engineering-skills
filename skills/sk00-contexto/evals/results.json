@@ -1,0 +1,64 @@
+{
+  "id": "SK00",
+  "prompt": "Retomamos un agente del que solo hay un README viejo que dice listo, un test reciente fallido y un presupuesto estimado. La demo es mañana. Prepara el contexto para continuar sin volver a investigar todo.",
+  "baseline_status": "PARTIAL",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK00-01",
+      "criterion": "Distinguir hechos/historia/hipótesis",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "Separaría hechos observados, declaraciones antiguas y estimaciones.",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "«listo» es una declaración histórica",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK00-02",
+      "criterion": "reutilizar evidencia",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "vinculada a los tres artefactos disponibles",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "reutilizar la evidencia disponible",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK00-03",
+      "criterion": "presupuesto estimado no autorización",
+      "baseline": {
+        "status": "PARTIAL",
+        "evidence": "Faltan responsable de aceptación, límite de gasto y criterio de éxito.",
+        "reason": "Reconoce estimaciones y falta de límite de gasto, pero no establece expresamente que la estimación no autoriza gastar."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "el presupuesto es estimación, no gasto autorizado.",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK00-04",
+      "criterion": "siguiente paso acotado",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "reproducir ese fallo",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "ejecutar únicamente el test afectado",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

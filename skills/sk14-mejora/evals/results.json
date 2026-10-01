@@ -1,0 +1,92 @@
+{
+  "id": "SK14",
+  "prompt": "Una skill parece mejor en los mismos tres casos usados para escribirla. Queremos reemplazar todas las skills y defaults de proveedor automáticamente esta noche. Propón mejora controlada.",
+  "baseline_status": "PASS",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK14-01",
+      "criterion": "Baseline emparejado y casos nuevos",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "Compararía baseline y candidata bajo las mismas condiciones",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "usando idénticas entradas y configuración. Añadiría holdout nuevo",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK14-02",
+      "criterion": "alcance de cambio",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "limitaría su alcance a la tarea que pretende mejorar",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "no sustituiría skills ajenas al fallo",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK14-03",
+      "criterion": "versiones",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "Versionaría la candidata",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Versionaría skill y componente por separado",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK14-04",
+      "criterion": "regresiones",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "más regresiones de las skills existentes",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "regresiones, latencia y coste",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK14-05",
+      "criterion": "evidencias separadas skill/componente",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "Separaría el cambio de skill del cambio de proveedor o defaults para poder atribuir efectos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "distinguiendo sus evidencias",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK14-06",
+      "criterion": "no universalizar proveedor",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "no la promoción indiscriminada",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Los defaults de proveedor requerirían una comparación independiente",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

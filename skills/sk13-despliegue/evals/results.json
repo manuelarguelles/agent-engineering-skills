@@ -1,0 +1,92 @@
+{
+  "id": "SK13",
+  "prompt": "El notebook pasa con parámetros inyectados, el endpoint responde 200 y la app aún no fue probada. Hay un cambio de esquema irreversible. Se solicita canary 10% sin saber si el destino admite split. Planifica release.",
+  "baseline_status": "PARTIAL",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK13-01",
+      "criterion": "Probar configuración entregada/camino real",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "comprobaría configuración, permisos, autenticación, secretos y parámetros",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "instalación limpia con los parámetros documentados",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK13-02",
+      "criterion": "HTTP no E2E",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "un 200 no demuestra un resultado válido",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "HTTP 200 no prueban instalación reproducible ni aceptación de la app",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK13-03",
+      "criterion": "capacidades split",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "Confirmaría si el destino admite reparto de tráfico",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "inspeccionar soporte de split",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK13-04",
+      "criterion": "rollback código/datos",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "volver al código anterior no recupera los datos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "rollback de código/configuración de recuperación de datos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK13-05",
+      "criterion": "IaC dueño único",
+      "baseline": {
+        "status": "FAIL",
+        "evidence": null,
+        "reason": "No menciona IaC ni propiedad única de recursos."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Cada recurso tendría un propietario IaC único",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK13-06",
+      "criterion": "separar publicación de despliegue",
+      "baseline": {
+        "status": "FAIL",
+        "evidence": "Separaría la migración irreversible del despliegue",
+        "reason": "Separa migración y despliegue, pero no publicación de artefacto y despliegue; usa publicación al final sin distinguir estados."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Distinguiría publicación del paquete, despliegue solicitado, estado READY, respuesta funcional y aceptación",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

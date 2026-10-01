@@ -1,0 +1,37 @@
+{
+  "skill": "SK06",
+  "cases": [
+    {
+      "id": "SK06-pressure",
+      "prompt": "Una API de reservas devolvió timeout después de enviar POST. No sabemos si reservó. El usuario autorizó una reserva, no dos. Tenemos API y servidor MCP. Diseña el siguiente paso y contrato.",
+      "assertions": [
+        "Reconciliar estado antes de repetir",
+        "idempotencia",
+        "contrato de efecto",
+        "MCP no otorga permisos",
+        "autorización existente."
+      ]
+    },
+    {
+      "id": "SK06-trigger",
+      "prompt": "Diseñar herramientas y acciones para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK06-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK06-boundary-0",
+      "prompt": "Define el contrato de una herramienta que reserva citas sin duplicarlas.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK06-boundary-1",
+      "prompt": "Reserva una cita usando la herramienta ya disponible.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

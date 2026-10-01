@@ -1,0 +1,15 @@
+{
+  "creator": "skill-creator-z",
+  "creator_sha256": "913c602cca1fcc8bfbe6a7b6300199f098c178970952302579d152029491fc99",
+  "skill_id": "SK05",
+  "research_reused": [
+    "rrf",
+    "mcp"
+  ],
+  "baseline_file": "../../../evals/baseline/group-1.json",
+  "baseline_observation": "Available before drafting. Strong baseline; no fabricated RED failure or claimed gain.",
+  "skill_sha256": "6030764536c6f39b8a4a4fc4147dba3ec96af67ba59c289cb4aa1d59e4ed5461",
+  "status": "provisional",
+  "runtime_validation": "not a deployed component",
+  "refinement": "0.1.1: more discriminating description and near-boundary evals after independent triggering review; core procedure unchanged"
+}

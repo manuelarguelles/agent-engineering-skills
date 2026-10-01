@@ -1,0 +1,38 @@
+{
+  "skill": "SK13",
+  "cases": [
+    {
+      "id": "SK13-pressure",
+      "prompt": "El notebook pasa con parámetros inyectados, el endpoint responde 200 y la app aún no fue probada. Hay un cambio de esquema irreversible. Se solicita canary 10% sin saber si el destino admite split. Planifica release.",
+      "assertions": [
+        "Probar configuración entregada/camino real",
+        "HTTP no E2E",
+        "capacidades split",
+        "rollback código/datos",
+        "IaC dueño único",
+        "separar publicación de despliegue."
+      ]
+    },
+    {
+      "id": "SK13-trigger",
+      "prompt": "Desplegar y recuperar para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK13-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK13-boundary-0",
+      "prompt": "Prepara un release con migración y un plan verificable de recuperación.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK13-boundary-1",
+      "prompt": "Recupera fragmentos de una política para fundamentar una respuesta.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

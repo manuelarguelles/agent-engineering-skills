@@ -1,0 +1,66 @@
+[
+  {
+    "id": "skills",
+    "url": "https://agentskills.io/specification",
+    "consulted_on": "2026-09-30",
+    "claim": "Formato SKILL.md y divulgación progresiva",
+    "limits": "Especificación consultada; no se probó cada runtime consumidor.",
+    "kind": "primary"
+  },
+  {
+    "id": "patterns",
+    "url": "https://www.anthropic.com/engineering/building-effective-agents",
+    "consulted_on": "2026-09-30",
+    "claim": "Alternativa entre flujos predeterminados y agentes dinámicos",
+    "limits": "Artículo de 2024 advierte cambios de tooling; se reutiliza la distinción conceptual, no recomendaciones actuales de productos.",
+    "kind": "primary"
+  },
+  {
+    "id": "mcp",
+    "url": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices",
+    "consulted_on": "2026-09-30",
+    "claim": "Seguridad de integraciones MCP",
+    "limits": "Documento versionado 2025-11-25; comprobar compatibilidad del servidor elegido.",
+    "kind": "primary"
+  },
+  {
+    "id": "rrf",
+    "url": "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion",
+    "consulted_on": "2026-09-30",
+    "claim": "RRF combina listas de resultados",
+    "limits": "Ejemplo de implementación, no requisito de usar Elastic ni promesa de calidad.",
+    "kind": "primary"
+  },
+  {
+    "id": "graphs",
+    "url": "https://docs.langchain.com/oss/python/langgraph/overview",
+    "consulted_on": "2026-09-30",
+    "claim": "Orquestación con estado y ejecución durable",
+    "limits": "Alternativa técnica; no evaluada con un despliegue en este proyecto.",
+    "kind": "primary"
+  },
+  {
+    "id": "otel",
+    "url": "https://opentelemetry.io/docs/concepts/semantic-conventions/",
+    "consulted_on": "2026-09-30",
+    "claim": "Vocabulario compartido para telemetría",
+    "limits": "Fijar versión de convenciones de la instrumentación elegida; no suponer estabilidad de todo atributo GenAI.",
+    "kind": "primary"
+  },
+  {
+    "id": "events",
+    "url": "https://cloudevents.io/",
+    "consulted_on": "2026-09-30",
+    "claim": "Contrato interoperable de eventos",
+    "limits": "No garantiza orden, entrega única ni idempotencia de efectos.",
+    "kind": "primary"
+  },
+  {
+    "id": "openapi",
+    "url": "https://spec.openapis.org/oas/latest.html",
+    "consulted_on": "2026-09-30",
+    "claim": "Contrato de interfaces HTTP",
+    "limits": "La página consultada declara 3.2.1; verificar versión soportada por herramientas elegidas.",
+    "kind": "primary"
+  }
+]

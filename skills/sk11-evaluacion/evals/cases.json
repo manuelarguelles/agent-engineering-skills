@@ -1,0 +1,37 @@
+{
+  "skill": "SK11",
+  "cases": [
+    {
+      "id": "SK11-pressure",
+      "prompt": "El agente acertó diez ejemplos elegidos durante desarrollo. El mismo autor-modelo actuó como juez. Quieren declarar 100% listo para producción. Define evaluación y conclusión.",
+      "assertions": [
+        "Holdout por tareas/riesgos",
+        "denominadores",
+        "sesgo juez",
+        "errores/latencia/costes",
+        "muestra no certifica producción."
+      ]
+    },
+    {
+      "id": "SK11-trigger",
+      "prompt": "Evaluar y comparar el agente para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK11-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK11-boundary-0",
+      "prompt": "Prepara casos independientes para comprobar si nuestro agente está listo.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK11-boundary-1",
+      "prompt": "Activa una alerta de latencia usando los umbrales ya acordados.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

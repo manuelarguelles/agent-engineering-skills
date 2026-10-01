@@ -1,0 +1,92 @@
+{
+  "id": "SK12",
+  "prompt": "Hay respuestas lentas. Operaciones pide registrar prompts completos, correos y tokens de acceso para diagnosticar. Las trazas cruzan modelo, retrieval y herramientas; coste parcial. Define observabilidad.",
+  "baseline_status": "PARTIAL",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK12-01",
+      "criterion": "IDs correlación",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "identificador de correlación y spans",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "trazas distribuidas correlacionadas por solicitud",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK12-02",
+      "criterion": "redacción/minimización",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "redacción antes de exportar",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "minimización y redacción antes de exportar",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK12-03",
+      "criterion": "coste desconocido distinto cero",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "datos confirmados, estimaciones y componentes desconocidos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "partidas desconocidas como null, nunca como cero",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK12-04",
+      "criterion": "latencia por etapa",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "espera en cola, retrieval, modelo y herramientas",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Mediría duración por etapa",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK12-05",
+      "criterion": "alertas con acción",
+      "baseline": {
+        "status": "PARTIAL",
+        "evidence": "Alertaría sobre degradación, errores y costes anómalos",
+        "reason": "Define señales de alerta, pero no una acción o responsable ante ellas."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "responsable de guardia identifica el span dominante y reduce concurrencia o escala la dependencia",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK12-06",
+      "criterion": "retención",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "retención breve",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "retención inicial de siete días",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

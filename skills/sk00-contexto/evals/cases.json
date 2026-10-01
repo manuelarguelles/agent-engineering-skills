@@ -1,0 +1,36 @@
+{
+  "skill": "SK00",
+  "cases": [
+    {
+      "id": "SK00-pressure",
+      "prompt": "Retomamos un agente del que solo hay un README viejo que dice listo, un test reciente fallido y un presupuesto estimado. La demo es mañana. Prepara el contexto para continuar sin volver a investigar todo.",
+      "assertions": [
+        "Distinguir hechos/historia/hipótesis",
+        "reutilizar evidencia",
+        "presupuesto estimado no autorización",
+        "siguiente paso acotado."
+      ]
+    },
+    {
+      "id": "SK00-trigger",
+      "prompt": "Recuperar contexto y evidencia para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK00-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK00-boundary-0",
+      "prompt": "Retoma el proyecto y separa decisiones vigentes de notas antiguas.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK00-boundary-1",
+      "prompt": "Busca ahora en nuestros documentos la política de vacaciones.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

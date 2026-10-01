@@ -1,0 +1,92 @@
+{
+  "id": "SK07",
+  "prompt": "Hay imágenes y texto sensible. Exigimos residencia de datos, latencia p95 menor de dos segundos y bajo coste. Nadie midió los candidatos. El modelo de mayor benchmark general es favorito. Selecciona estrategia.",
+  "baseline_status": "PARTIAL",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK07-01",
+      "criterion": "No afirmar ganador sin medición",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "No elegiría todavía un ganador",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "No seleccionaría todavía un ganador",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK07-02",
+      "criterion": "capacidades/modalidad",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "tareas multimodales",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "tareas visuales y umbral de calidad",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK07-03",
+      "criterion": "residencia",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "residencia en un filtro obligatorio",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "jurisdicción permitida, tratamiento y retención de datos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK07-04",
+      "criterion": "p95 real",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "exigiría p95 inferior a dos segundos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "p50/p95 extremo a extremo bajo carga",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK07-05",
+      "criterion": "muestras y coste",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "coste por tarea resuelta",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "conjunto representativo autorizado",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK07-06",
+      "criterion": "fallback seguro",
+      "baseline": {
+        "status": "PARTIAL",
+        "evidence": "Si ninguno cumple, presentaría las mediciones y negociaría alcance o infraestructura",
+        "reason": "Propone no seleccionar si nadie cumple y renegociar alcance; falta contrato explícito de fallback compatible o fallo controlado en ejecución."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "Un fallback conservaría residencia, permisos y contrato; sin opción compatible, fallaría de forma controlada.",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

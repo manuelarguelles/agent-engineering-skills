@@ -1,0 +1,78 @@
+{
+  "id": "SK06",
+  "prompt": "Una API de reservas devolvió timeout después de enviar POST. No sabemos si reservó. El usuario autorizó una reserva, no dos. Tenemos API y servidor MCP. Diseña el siguiente paso y contrato.",
+  "baseline_status": "PARTIAL",
+  "with_skill_status": "PASS",
+  "assertions": [
+    {
+      "id": "SK06-01",
+      "criterion": "Reconciliar estado antes de repetir",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "No repetiría inmediatamente el POST",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "El siguiente paso es una lectura de reconciliación",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK06-02",
+      "criterion": "idempotencia",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "clave de idempotencia estable por intención autorizada",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "clave estable, huella de argumentos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK06-03",
+      "criterion": "contrato de efecto",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "confirmada, pendiente, rechazada o desconocida",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "precondiciones, efecto, errores y estados confirmado/pendiente/fallido/desconocido",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK06-04",
+      "criterion": "MCP no otorga permisos",
+      "baseline": {
+        "status": "PARTIAL",
+        "evidence": "MCP expondría creación y consulta de estado con esquemas estrictos, permisos",
+        "reason": "Incluye permisos en el contrato MCP; no aclara que el protocolo no concede autorización. La aclaración presente trata garantías transaccionales."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "MCP sirve como adaptador si conserva ese contrato, sin conceder permisos",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    },
+    {
+      "id": "SK06-05",
+      "criterion": "autorización existente",
+      "baseline": {
+        "status": "PASS",
+        "evidence": "por intención autorizada",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      },
+      "with_skill": {
+        "status": "PASS",
+        "evidence": "No pediría otra autorización para la misma reserva",
+        "reason": "Cubre el criterio en el diseño propuesto."
+      }
+    }
+  ]
+}

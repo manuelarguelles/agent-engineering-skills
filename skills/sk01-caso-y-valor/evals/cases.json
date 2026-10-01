@@ -1,0 +1,36 @@
+{
+  "skill": "SK01",
+  "cases": [
+    {
+      "id": "SK01-pressure",
+      "prompt": "Queremos un agente para que empleados encuentren respuestas internas. El director promete ahorrar 40%. Solo tenemos esa frase; no hay métricas ni usuarios entrevistados. Define el caso inicial.",
+      "assertions": [
+        "No inventar ROI",
+        "usuarios y tareas",
+        "baseline medible",
+        "alcance y decisiones pendientes."
+      ]
+    },
+    {
+      "id": "SK01-trigger",
+      "prompt": "Definir el caso y las decisiones para nuestro agente",
+      "expected_activation": true
+    },
+    {
+      "id": "SK01-negative",
+      "prompt": "Traducir una frase sin diseñar ni modificar un agente.",
+      "expected_activation": false
+    },
+    {
+      "id": "SK01-boundary-0",
+      "prompt": "Define para quién sirve el asistente y cómo mediremos si ahorra trabajo.",
+      "expected_activation": true
+    },
+    {
+      "id": "SK01-boundary-1",
+      "prompt": "Elige entre búsqueda léxica y vectorial con el caso de uso ya fijado.",
+      "expected_activation": false
+    }
+  ],
+  "holdout_status": "Unseen cross-domain review pending; not a statistical benchmark"
+}

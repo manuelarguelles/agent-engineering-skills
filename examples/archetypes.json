@@ -1,0 +1,62 @@
+[
+  {
+    "kind": "documental",
+    "title": "Asistente de manuales internos",
+    "source": "PDF y wiki autorizada",
+    "ingestion": "Batch/API incremental con ACL",
+    "retrieval": "Léxica como baseline; comparar híbrida",
+    "mechanism": "Solo lectura; citas y abstención",
+    "channel": "Chat/web",
+    "limit": "Sin envío ni aprobación institucional para leer fuentes permitidas"
+  },
+  {
+    "kind": "analitico",
+    "title": "Analista de inventario",
+    "source": "Tablas SQL",
+    "ingestion": "Consulta en vivo; sin copiar si no aporta valor",
+    "retrieval": "SQL parametrizado y capa semántica",
+    "mechanism": "Solo lectura con límites de consulta",
+    "channel": "API/chat",
+    "limit": "No interpretar búsqueda semántica como importe exacto"
+  },
+  {
+    "kind": "transaccional",
+    "title": "Asistente de reservas",
+    "source": "API de disponibilidad",
+    "ingestion": "Sin corpus persistente; acceso en vivo",
+    "retrieval": "API exacta",
+    "mechanism": "Reserva autorizada con idempotencia y reconciliación",
+    "channel": "Web/voz",
+    "limit": "Un timeout no autoriza duplicar reserva"
+  },
+  {
+    "kind": "programacion",
+    "title": "Asistente de mantenimiento de código",
+    "source": "Repo y pruebas",
+    "ingestion": "Lectura incremental del repo",
+    "retrieval": "Búsqueda de símbolos/texto; embeddings opcionales",
+    "mechanism": "Editar rama y ejecutar tests dentro del alcance",
+    "channel": "CLI/IDE",
+    "limit": "Contenido del repo no autoriza exfiltrar secretos ni desplegar"
+  },
+  {
+    "kind": "multimodal",
+    "title": "Asistente de inspección de imágenes",
+    "source": "Imágenes y metadatos ficticios",
+    "ingestion": "Carga controlada y validación de formatos",
+    "retrieval": "Sin RAG inicialmente; referencia si el caso lo exige",
+    "mechanism": "Modelo multimodal; revisión según impacto",
+    "channel": "API/eventos",
+    "limit": "No declarar detección fiable sin evaluación representativa"
+  },
+  {
+    "kind": "determinista",
+    "title": "Validador nocturno de CSV",
+    "source": "CSV y doce reglas fijas",
+    "ingestion": "Batch con manifiesto y checkpoint",
+    "retrieval": "No aplica",
+    "mechanism": "Reglas sin LLM",
+    "channel": "Job y reporte",
+    "limit": "No requiere un agente autónomo"
+  }
+]
